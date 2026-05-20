@@ -29,6 +29,7 @@ public class FormColaboradores extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         mostrarCadastrados = new javax.swing.JButton();
@@ -46,8 +47,11 @@ public class FormColaboradores extends javax.swing.JDialog {
 
         appendColaborador.setText("Adicionar Colaborador");
 
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Bibliotecario");
 
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setSelected(true);
         jRadioButton1.setText("Auxiliar ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -130,6 +134,7 @@ public class FormColaboradores extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton appendColaborador;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
