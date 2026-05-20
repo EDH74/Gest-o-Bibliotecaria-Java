@@ -4,6 +4,12 @@
  */
 package formulario;
 
+import java.util.ArrayList;
+import classes.Bibliotecaria;
+import classes.Funcionario;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  *
  * @author eduar
@@ -11,15 +17,25 @@ package formulario;
 public class FormColaboradores extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormColaboradores.class.getName());
-
+    final private ArrayList<Funcionario> auxiliarList;
+    final private ArrayList<Bibliotecaria> bibliotecariaList;
+    FormMain principal;
+    
     /**
      * Creates new form FormColaboradores
      */
-    public FormColaboradores(java.awt.Frame parent, boolean modal) {
+    public FormColaboradores(java.awt.Frame parent, boolean modal, ArrayList<Funcionario> auxList, ArrayList<Bibliotecaria> bibliotecaria) {
+        this.auxiliarList = auxList;
+        this.bibliotecariaList = bibliotecaria;
+        principal = (FormMain) this.getParent();
+        
+        
         super(parent, modal);
         initComponents();
     }
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,47 +47,51 @@ public class FormColaboradores extends javax.swing.JDialog {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        taSaida = new javax.swing.JTextArea();
         mostrarCadastrados = new javax.swing.JButton();
         appendColaborador = new javax.swing.JButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        bibliotecarioButao = new javax.swing.JRadioButton();
+        auxButao = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        taSaida.setColumns(20);
+        taSaida.setRows(5);
+        jScrollPane1.setViewportView(taSaida);
 
         mostrarCadastrados.setText("Mostrar Funcionarios Cadastrados");
+        mostrarCadastrados.addActionListener(this::mostrarCadastradosActionPerformed);
 
         appendColaborador.setText("Adicionar Colaborador");
+        appendColaborador.addActionListener(this::appendColaboradorActionPerformed);
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Bibliotecario");
+        buttonGroup1.add(bibliotecarioButao);
+        bibliotecarioButao.setText("Bibliotecario");
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("Auxiliar ");
+        buttonGroup1.add(auxButao);
+        auxButao.setSelected(true);
+        auxButao.setText("Auxiliar ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(mostrarCadastrados)
-                .addGap(106, 106, 106)
-                .addComponent(appendColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addContainerGap(55, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(mostrarCadastrados)
+                        .addGap(106, 106, 106)
+                        .addComponent(appendColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bibliotecarioButao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(auxButao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 49, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,9 +104,9 @@ public class FormColaboradores extends javax.swing.JDialog {
                             .addComponent(appendColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(58, 58, 58)
-                        .addComponent(jRadioButton1)
+                        .addComponent(auxButao)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton2)))
+                        .addComponent(bibliotecarioButao)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -95,50 +115,32 @@ public class FormColaboradores extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void mostrarCadastradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarCadastradosActionPerformed
+      
+        
+
+    }//GEN-LAST:event_mostrarCadastradosActionPerformed
+
+    private void appendColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appendColaboradorActionPerformed
+        if (auxButao.isSelected()){
+            Funcionario tempAux = new Funcionario();
+            
+        }
+
+    }//GEN-LAST:event_appendColaboradorActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                FormColaboradores dialog = new FormColaboradores(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton appendColaborador;
+    private javax.swing.JRadioButton auxButao;
+    private javax.swing.JRadioButton bibliotecarioButao;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton mostrarCadastrados;
+    private javax.swing.JTextArea taSaida;
     // End of variables declaration//GEN-END:variables
 }

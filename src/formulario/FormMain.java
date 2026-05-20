@@ -22,9 +22,9 @@ public class FormMain extends javax.swing.JFrame {
         initComponents();
     }
     
-    final ArrayList<Funcionario> auxList = new ArrayList();
-    final ArrayList<Bibliotecaria> bibliotecariaList = new ArrayList();
-    final ArrayList<Obra> obraList = new ArrayList();
+    final private ArrayList<Funcionario> auxList = new ArrayList();
+    final private ArrayList<Bibliotecaria> bibliotecariaList = new ArrayList();
+    final private ArrayList<Obra> obraList = new ArrayList();
     
     public Funcionario acharAux(int codInterno){
         for (Funcionario i : auxList){
@@ -73,6 +73,7 @@ public class FormMain extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Painel de administrador ");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jButton2.setText("Acervo de Obras");
 
@@ -99,6 +100,11 @@ public class FormMain extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        FormColaboradores telaColaboradores = new FormColaboradores(this, true, this.auxList, this.bibliotecariaList);
+        telaColaboradores.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
