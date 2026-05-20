@@ -1,8 +1,22 @@
 package classes;
+import java.util.ArrayList;
+import classes.Autor;
 
 public class Obra {
-    String titulo, isbn, data, editora,autores;
-
+    private String titulo, isbn, data, editora;
+    private final ArrayList<Autor> listAutor = new ArrayList();
+    
+    
+    public Obra(){
+    }
+    
+    public Obra(String titulo, String isbn, String data, String editora){
+        this.titulo = titulo;
+        this.isbn = isbn;
+        this.data = data;
+        this.editora = editora;
+    }
+    
     //getter e setter de Titulo!
     public String getTitulo() {
         return titulo;
@@ -40,15 +54,13 @@ public class Obra {
     }
 
     //getter e setter de autores!
-    public String getAutores() {
-        return autores;
+    public ArrayList<Autor> getAutores() {
+        return this.listAutor;
     }
 
-    public void setAutores(String autores) {
-        this.autores = autores;
+    public void setAutores(Autor autores) {
+        this.listAutor.add(autores);
     }
-    
-    
     
     
 }

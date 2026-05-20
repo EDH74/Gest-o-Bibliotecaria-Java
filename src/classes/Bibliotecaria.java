@@ -5,7 +5,11 @@ public class Bibliotecaria extends Funcionario{   //Essa classe é uma herança 
     String crb, areaAtuacao;    
     
     public Bibliotecaria(){
-        
+    }
+    
+    public Bibliotecaria(String crb, String areaAtuacao){
+        this.crb = crb;
+        this.areaAtuacao = areaAtuacao;
     }
     
     //Setters
