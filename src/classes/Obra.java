@@ -60,7 +60,7 @@ public class Obra {
         String msg = "" ;
                 
         for(Autor i : listAutor){
-            msg += "Autor: " + i.getNome() + "\nNascionalidade: " + i.getNascionalidade() + "\n\n";
+            msg += "Autor: " + i.getNome() + "\nNascionalidade: " + i.getNascionalidade() + "\n";
         }
         
         return msg;
