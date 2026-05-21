@@ -1,31 +1,35 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package formulario;
 
+import java.util.ArrayList;
 import classes.Obra;
 import classes.Autor;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
+
+
 
 /**
  *
  * @author rbzin
  */
-public class FormAcervo extends javax.swing.JFrame {
+public class FormAcervo extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormAcervo.class.getName());
-
+    private ArrayList<Obra> listaObraNoAcervo;
+    ArrayList<Obra> listaObra = new ArrayList();
     /**
-     * Creates new form FormObra
+     * Creates new form FormAcervo1
      */
-    public FormAcervo() {
+    public FormAcervo(java.awt.Frame parent, boolean modal, ArrayList<Obra> listaObras) {
+        super(parent, modal);
         initComponents();
+        
+        this.listaObraNoAcervo = listaObras;
     }
 
-    ArrayList<Obra> listaObra = new ArrayList();
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,47 +39,46 @@ public class FormAcervo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        botaoInserirObra = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         taSaida = new javax.swing.JTextArea();
+        inserirObra = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        botaoInserirObra.setText("Inserir Obra");
-        botaoInserirObra.addActionListener(this::botaoInserirObraActionPerformed);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         taSaida.setColumns(20);
         taSaida.setRows(5);
         jScrollPane1.setViewportView(taSaida);
 
+        inserirObra.setText("Inserir Obra");
+        inserirObra.addActionListener(this::inserirObraActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(botaoInserirObra, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(122, 122, 122)
+                .addComponent(inserirObra, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(botaoInserirObra, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addComponent(inserirObra, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoInserirObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInserirObraActionPerformed
+    private void inserirObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inserirObraActionPerformed
         int qtdAutores;
         Obra ob = new Obra();
         
@@ -100,36 +103,14 @@ public class FormAcervo extends javax.swing.JFrame {
         for (Obra obr : listaObra){
             taSaida.append("\n" + obr.toString());
         }
-    }//GEN-LAST:event_botaoInserirObraActionPerformed
+    }//GEN-LAST:event_inserirObraActionPerformed
 
-    //alterei viu
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FormAcervo().setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoInserirObra;
+    private javax.swing.JButton inserirObra;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea taSaida;
     // End of variables declaration//GEN-END:variables

@@ -26,7 +26,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jButton2" max="32767" attributes="0"/>
+                  <Component id="botaoAbrirAcervo" max="32767" attributes="0"/>
                   <Component id="jButton1" pref="210" max="32767" attributes="0"/>
                   <Component id="showObras" max="32767" attributes="0"/>
               </Group>
@@ -40,7 +40,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" pref="44" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" pref="45" max="-2" attributes="0"/>
+              <Component id="botaoAbrirAcervo" min="-2" pref="45" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="showObras" min="-2" pref="45" max="-2" attributes="0"/>
               <EmptySpace pref="173" max="32767" attributes="0"/>
@@ -57,10 +57,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="botaoAbrirAcervo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Acervo de Obras"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAbrirAcervoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="showObras">
       <Properties>

@@ -24,7 +24,7 @@ public class FormMain extends javax.swing.JFrame {
     
     final private ArrayList<Funcionario> auxList = new ArrayList();
     final private ArrayList<Bibliotecaria> bibliotecariaList = new ArrayList();
-    final private ArrayList<Obra> obraList = new ArrayList();
+    final private ArrayList<Obra> listaObras = new ArrayList();
     
     
     //Funções de Busca
@@ -49,7 +49,7 @@ public class FormMain extends javax.swing.JFrame {
     
     
     public Obra acharObra(String isbn){
-        for (Obra i : obraList){
+        for (Obra i : listaObras){
             if (i.getIsbn().equals(isbn)){   //Busca Obra
                 return i;
             }
@@ -61,7 +61,7 @@ public class FormMain extends javax.swing.JFrame {
     public String showObras(){
         String msg = "Todas as Obras: ";
         
-        for (Obra o : obraList){
+        for (Obra o : listaObras){
             msg += "\n " + o.toString();   //Mostra todas as obras cadastrada na lista
         }
         return msg;
@@ -98,7 +98,7 @@ public class FormMain extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        botaoAbrirAcervo = new javax.swing.JButton();
         showObras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -106,7 +106,8 @@ public class FormMain extends javax.swing.JFrame {
         jButton1.setText("Painel de administrador ");
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
-        jButton2.setText("Acervo de Obras");
+        botaoAbrirAcervo.setText("Acervo de Obras");
+        botaoAbrirAcervo.addActionListener(this::botaoAbrirAcervoActionPerformed);
 
         showObras.setText("Mostrar Todas as obras");
 
@@ -117,7 +118,7 @@ public class FormMain extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(130, 130, 130)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoAbrirAcervo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
                     .addComponent(showObras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(133, Short.MAX_VALUE))
@@ -128,7 +129,7 @@ public class FormMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoAbrirAcervo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(showObras, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(173, Short.MAX_VALUE))
@@ -141,6 +142,11 @@ public class FormMain extends javax.swing.JFrame {
         FormColaboradores telaColaboradores = new FormColaboradores(this, true, this.auxList, this.bibliotecariaList);
         telaColaboradores.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void botaoAbrirAcervoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAbrirAcervoActionPerformed
+        FormAcervo telaAcervo = new FormAcervo(this, true, listaObras);
+        telaAcervo.setVisible(true);
+    }//GEN-LAST:event_botaoAbrirAcervoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,8 +174,8 @@ public class FormMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoAbrirAcervo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton showObras;
     // End of variables declaration//GEN-END:variables
 }
