@@ -10,13 +10,6 @@ public class Obra {
     public Obra(){
     }
     
-    public Obra(String titulo, String isbn, String data, String editora){
-        this.titulo = titulo;
-        this.isbn = isbn;
-        this.data = data;
-        this.editora = editora;
-    }
-    
     //getter e setter de Titulo!
     public String getTitulo() {
         return titulo;
@@ -60,7 +53,29 @@ public class Obra {
 
     public void setAutores(Autor autores) {
         this.listAutor.add(autores);
+        
     }
+    
+    public String exibirAutores(){
+        String msg = "" ;
+                
+        for(Autor i : listAutor){
+            msg += "Autor: " + i.getNome() + "\nNascionalidade: " + i.getNascionalidade() + "\n\n";
+        }
+        
+        return msg;
+    }
+
+    @Override
+    public String toString() {
+        return  "Titulo = " + titulo 
+                + "\nISBN = " + isbn 
+                + "\nData = " + data 
+                + "\nEditora = " + editora + "\n"
+                + exibirAutores();
+    }
+    
+    
     
     
 }
