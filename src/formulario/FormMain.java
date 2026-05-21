@@ -26,9 +26,11 @@ public class FormMain extends javax.swing.JFrame {
     final private ArrayList<Bibliotecaria> bibliotecariaList = new ArrayList();
     final private ArrayList<Obra> obraList = new ArrayList();
     
+    
+    //Funções de Busca
     public Funcionario acharAux(int codInterno){
         for (Funcionario i : auxList){
-            if (i.getCodInterno() == codInterno){
+            if (i.getCodInterno() == codInterno){   //Busca Funcionario Auxiliar
                 return i;
             }
         }
@@ -38,7 +40,7 @@ public class FormMain extends javax.swing.JFrame {
     
     public Bibliotecaria acharBibliotecaria(String crb){
         for (Bibliotecaria c : bibliotecariaList){
-            if(c.getCrb().equals(crb)){
+            if(c.getCrb().equals(crb)){   //Busca bibliotecaria
                 return c;
             }
         }
@@ -48,14 +50,42 @@ public class FormMain extends javax.swing.JFrame {
     
     public Obra acharObra(String isbn){
         for (Obra i : obraList){
-            if (i.getIsbn().equals(isbn)){
+            if (i.getIsbn().equals(isbn)){   //Busca Obra
                 return i;
             }
         }
         return null;
     }
     
+    //Funções de show
+    public String showObras(){
+        String msg = "Todas as Obras: ";
+        
+        for (Obra o : obraList){
+            msg += "\n " + o.toString();   //Mostra todas as obras cadastrada na lista
+        }
+        return msg;
+    }
     
+    
+    public String showAux(){
+        String msg = "Todas os auxiliares: ";
+        
+        for (Funcionario f : auxList){
+            msg += "\n " + f.toString();   //Mostra todas os funcionario auxiliares cadastrada na lista
+        }
+        return msg;
+    }
+    
+    
+    public String showBibliotecarias(){
+        String msg = "Todas as Bibliotecarias (o): ";
+
+        for (Funcionario b : bibliotecariaList){
+            msg += "\n " + b.toString();   //Mostra todas as bibliotecarias cadastrada na lista
+        }
+        return msg;
+    }
     
 
     /**
@@ -69,6 +99,7 @@ public class FormMain extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        showObras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,6 +107,8 @@ public class FormMain extends javax.swing.JFrame {
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jButton2.setText("Acervo de Obras");
+
+        showObras.setText("Mostrar Todas as obras");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,17 +118,20 @@ public class FormMain extends javax.swing.JFrame {
                 .addGap(130, 130, 130)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .addComponent(showObras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(133, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addContainerGap()
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(showObras, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(173, Short.MAX_VALUE))
         );
 
         pack();
@@ -134,5 +170,6 @@ public class FormMain extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton showObras;
     // End of variables declaration//GEN-END:variables
 }

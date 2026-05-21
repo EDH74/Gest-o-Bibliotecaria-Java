@@ -4,10 +4,16 @@ import java.util.ArrayList;
 public class Funcionario {
     int codInterno;
     String nome, turno;
-    ArrayList<String> telefone = new ArrayList();
+    ArrayList<String> telefone;
     
     public Funcionario(){
-        
+    }
+    
+    public Funcionario(int codInterno, String nome, ArrayList<String> telefone, String turno){
+        this.codInterno = codInterno;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.turno = turno;
     }
 
     //Setters
@@ -24,6 +30,7 @@ public class Funcionario {
     }
 
     public void setTelefone(String telefone) {
+        this.telefone = new ArrayList();
         this.telefone.add(telefone);
     }
     
@@ -46,7 +53,7 @@ public class Funcionario {
 
     @Override
     public String toString() {
-        return "Funcionario{" + "codInterno=" + codInterno + ", nome=" + nome + ", turno=" + turno + ", telefone=" + telefone + '}';
+        return "Funcionario{" + "codInterno= " + codInterno + ", nome= " + nome + ", turno= " + turno + ", telefone= " + telefone + '}';
     }
     
     

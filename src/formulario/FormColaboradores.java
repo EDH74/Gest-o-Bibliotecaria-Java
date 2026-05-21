@@ -7,8 +7,9 @@ package formulario;
 import java.util.ArrayList;
 import classes.Bibliotecaria;
 import classes.Funcionario;
-import java.util.HashSet;
+import java.util.EnumSet;
 import java.util.Set;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,11 +28,10 @@ public class FormColaboradores extends javax.swing.JDialog {
     public FormColaboradores(java.awt.Frame parent, boolean modal, ArrayList<Funcionario> auxList, ArrayList<Bibliotecaria> bibliotecaria) {
         this.auxiliarList = auxList;
         this.bibliotecariaList = bibliotecaria;
-        principal = (FormMain) this.getParent();
-        
         
         super(parent, modal);
         initComponents();
+        principal = (FormMain) this.getParent();
     }
 
     
@@ -52,6 +52,7 @@ public class FormColaboradores extends javax.swing.JDialog {
         appendColaborador = new javax.swing.JButton();
         bibliotecarioButao = new javax.swing.JRadioButton();
         auxButao = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -72,6 +73,8 @@ public class FormColaboradores extends javax.swing.JDialog {
         auxButao.setSelected(true);
         auxButao.setText("Auxiliar ");
 
+        jButton1.setText("Alterar Dados");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,32 +85,31 @@ public class FormColaboradores extends javax.swing.JDialog {
                         .addContainerGap()
                         .addComponent(jScrollPane1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(mostrarCadastrados)
-                        .addGap(106, 106, 106)
-                        .addComponent(appendColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(bibliotecarioButao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(auxButao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 49, Short.MAX_VALUE)))
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(mostrarCadastrados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(appendColaborador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(29, 29, 29)
+                        .addComponent(auxButao, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bibliotecarioButao, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 169, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(mostrarCadastrados, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(appendColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(auxButao)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bibliotecarioButao)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
+                .addGap(15, 15, 15)
+                .addComponent(mostrarCadastrados, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(appendColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(auxButao, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bibliotecarioButao, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -116,14 +118,94 @@ public class FormColaboradores extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mostrarCadastradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarCadastradosActionPerformed
-      
-        
-
+        if (auxButao.isSelected()){ 
+            taSaida.setText(principal.showAux());
+            return;
+        } else if(bibliotecarioButao.isSelected()){
+            taSaida.setText(principal.showBibliotecarias());
+            return;
+        }
     }//GEN-LAST:event_mostrarCadastradosActionPerformed
 
+    
+    
+    
     private void appendColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appendColaboradorActionPerformed
-        if (auxButao.isSelected()){
-            Funcionario tempAux = new Funcionario();
+        if (auxButao.isSelected()){ 
+            
+            int cod = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo do Auxiliar: "));
+            Funcionario funcionarioExistente = principal.acharAux(cod);
+            
+            if (funcionarioExistente != null){
+                taSaida.setText("Auxiliar já existe cadastrado");
+                taSaida.append("\n " + funcionarioExistente.toString());
+                return;
+            }
+            
+            String nome = JOptionPane.showInputDialog("Digite o nome do Auxiliar: ");
+            int qntTel = Integer.parseInt(JOptionPane.showInputDialog("Quantos telefones o auxiliar possui? "));
+            ArrayList<String> tel = new ArrayList();
+            
+            if (qntTel < 0) {
+                JOptionPane.showMessageDialog(rootPane, "Número de telefone inválido! pode ser modificado depois!");
+            } else if (qntTel == 0 ){
+                JOptionPane.showMessageDialog(rootPane, "O número pode ser modificado depois!");
+            } else{
+                int cont = 0;
+                while (cont < qntTel){
+                    tel.add(JOptionPane.showInputDialog("Adicione o número " + (cont+1) + ": "));
+                    cont ++;
+                }
+            }
+            
+            String turno = JOptionPane.showInputDialog("Digite o turno do auxiliar: ");
+            
+            Funcionario auxTemp = new Funcionario(cod, nome, tel, turno);
+            this.auxiliarList.add(auxTemp);
+            taSaida.setText("Funcionario "+ nome + " Adicionado com sucesso!");
+            
+            
+            
+        } else if(bibliotecarioButao.isSelected()){
+            Bibliotecaria bibliotecariaTemp = new Bibliotecaria();
+            
+            String crb = JOptionPane.showInputDialog("Digite o CRB do bibliotecario: ");
+            Bibliotecaria bibliotecariaExistente = principal.acharBibliotecaria(crb);
+            
+            
+            if (bibliotecariaExistente != null){
+                taSaida.setText("CRB já cadastrado no sistema tente outro!");
+                taSaida.append("\n " + bibliotecariaExistente.toString());
+                return;
+            }
+            
+            bibliotecariaTemp.setCrb(crb);
+            
+            String nome = JOptionPane.showInputDialog("Digite o nome do Bibliotecaria: ");
+            bibliotecariaTemp.setNome(nome);
+            int qntTel = Integer.parseInt(JOptionPane.showInputDialog("Quantos telefones o bibliotecario possui? "));
+          
+            
+            if (qntTel < 0) {
+                JOptionPane.showMessageDialog(rootPane, "Número de telefone inválido! pode ser modificado depois!");
+            } else if (qntTel == 0 ){
+                JOptionPane.showMessageDialog(rootPane, "O número pode ser modificado depois!");
+            } else{
+                int cont = 0;
+                while (cont < qntTel){
+                    bibliotecariaTemp.setTelefone((JOptionPane.showInputDialog("Adicione o número " + (cont+1) + ": ")));
+                    cont ++;
+                }
+                
+            }
+            
+            
+            bibliotecariaTemp.setTurno(JOptionPane.showInputDialog("Digite o turno do auxiliar: "));
+            bibliotecariaTemp.setAreaAtuacao(JOptionPane.showInputDialog("A area de Atuação: "));
+            
+            
+            this.bibliotecariaList.add(bibliotecariaTemp);
+            taSaida.setText("Funcionario "+ nome + " Adicionado com sucesso!");
             
         }
 
@@ -139,6 +221,7 @@ public class FormColaboradores extends javax.swing.JDialog {
     private javax.swing.JRadioButton auxButao;
     private javax.swing.JRadioButton bibliotecarioButao;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton mostrarCadastrados;
     private javax.swing.JTextArea taSaida;
