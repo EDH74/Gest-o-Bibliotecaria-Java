@@ -2,7 +2,7 @@ package classes;
 
 public class Bibliotecaria extends Funcionario{   //Essa classe é uma herança da classe funcionario, a mesma possui os mesmo atributos de funcionarios + as que eu adicionei
                                                   //agora, crb e areaAtuacao.
-    String crb, areaAtuacao;    
+    private String crb, areaAtuacao;    
     
     public Bibliotecaria(){
     }
@@ -34,7 +34,7 @@ public class Bibliotecaria extends Funcionario{   //Essa classe é uma herança 
 
     @Override
     public String toString() {
-        return "Funcionario{" + "codInterno=" + codInterno + ", nome=" + nome + ", turno=" + turno + ", telefone=" + telefone + "CRB= " + crb + "Area de Atuação=" + areaAtuacao +'}';
+        return "Funcionario{" + "codInterno=" + this.getCodInterno() + ", nome=" + this.getNome() + ", turno=" + this.getTurno() + ", telefone=" + this.getTelefone() + "CRB= " + crb + "Area de Atuação=" + areaAtuacao +'}';
     }
     
     

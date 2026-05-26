@@ -9,7 +9,7 @@ package classes;
  * @author eduar
  */
 public class Autor {
-    String nome, nascionalidade;
+    private String nome, nascionalidade;
     
     public Autor(){
     }

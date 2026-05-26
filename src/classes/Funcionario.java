@@ -2,9 +2,9 @@ package classes;
 import java.util.ArrayList;
 
 public class Funcionario {
-    int codInterno;
-    String nome, turno;
-    ArrayList<String> telefone;
+    private int codInterno;
+    private String nome, turno;
+    private ArrayList<String> telefone;
     
     public Funcionario(){
     }
