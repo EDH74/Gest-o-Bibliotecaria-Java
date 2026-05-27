@@ -25,6 +25,8 @@ public class FormMain extends javax.swing.JFrame {
     final private ArrayList<Funcionario> auxList = new ArrayList();
     final private ArrayList<Bibliotecaria> bibliotecariaList = new ArrayList();
     final private ArrayList<Obra> listaObras = new ArrayList();
+    final private ArrayList<FichaConservacao> listaFichas = new ArrayList();
+   
     
     
     //Funções de Busca
@@ -52,6 +54,15 @@ public class FormMain extends javax.swing.JFrame {
         for (Obra i : listaObras){
             if (i.getIsbn().equals(isbn)){   //Busca Obra
                 return i;
+            }
+        }
+        return null;
+    }
+    
+    public FichaConservacao acharFicha(int code){
+        for (FichaConservacao f : listaFichas){
+            if(f.getCode() == code){
+                return f;
             }
         }
         return null;
@@ -87,6 +98,16 @@ public class FormMain extends javax.swing.JFrame {
         return msg;
     }
     
+     public String showFichasDeConservacao(){
+        String msg = "Fichas de Conservação cadastradas: ";
+
+        for (FichaConservacao f : listaFichas){
+            
+            msg += "\n " + f.toString() + "\n";   //Mostra todas as bibliotecarias cadastrada na lista
+        }
+        return msg;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,7 +120,7 @@ public class FormMain extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         botaoAbrirAcervo = new javax.swing.JButton();
-        showObras = new javax.swing.JButton();
+        CadastroFichas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,19 +130,20 @@ public class FormMain extends javax.swing.JFrame {
         botaoAbrirAcervo.setText("Acervo de Obras");
         botaoAbrirAcervo.addActionListener(this::botaoAbrirAcervoActionPerformed);
 
-        showObras.setText("Mostrar Todas as obras");
+        CadastroFichas.setText("Gerenciamento de Fichas de Conservação");
+        CadastroFichas.addActionListener(this::CadastroFichasActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botaoAbrirAcervo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                    .addComponent(showObras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CadastroFichas, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                    .addComponent(botaoAbrirAcervo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,9 +152,9 @@ public class FormMain extends javax.swing.JFrame {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoAbrirAcervo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(showObras, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CadastroFichas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(179, Short.MAX_VALUE))
         );
 
         pack();
@@ -147,6 +169,12 @@ public class FormMain extends javax.swing.JFrame {
         FormAcervo telaAcervo = new FormAcervo(this, true, listaObras);
         telaAcervo.setVisible(true);
     }//GEN-LAST:event_botaoAbrirAcervoActionPerformed
+
+    private void CadastroFichasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroFichasActionPerformed
+        FormCadastroFichaConservacao telaGerenciamentoFichas = new FormCadastroFichaConservacao(this, true, listaObras, auxList, bibliotecariaList, listaFichas);
+        telaGerenciamentoFichas.setVisible(true);
+
+    }//GEN-LAST:event_CadastroFichasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,8 +202,8 @@ public class FormMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CadastroFichas;
     private javax.swing.JButton botaoAbrirAcervo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton showObras;
     // End of variables declaration//GEN-END:variables
 }

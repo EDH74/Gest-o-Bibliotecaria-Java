@@ -24,13 +24,13 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="botaoAbrirAcervo" max="32767" attributes="0"/>
-                  <Component id="jButton1" pref="210" max="32767" attributes="0"/>
-                  <Component id="showObras" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jButton1" max="32767" attributes="0"/>
+                  <Component id="CadastroFichas" alignment="0" pref="461" max="32767" attributes="0"/>
+                  <Component id="botaoAbrirAcervo" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="133" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -41,9 +41,9 @@
               <Component id="jButton1" min="-2" pref="44" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="botaoAbrirAcervo" min="-2" pref="45" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="showObras" min="-2" pref="45" max="-2" attributes="0"/>
-              <EmptySpace pref="173" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="CadastroFichas" min="-2" pref="45" max="-2" attributes="0"/>
+              <EmptySpace pref="179" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -65,10 +65,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAbrirAcervoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="showObras">
+    <Component class="javax.swing.JButton" name="CadastroFichas">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mostrar Todas as obras"/>
+        <Property name="text" type="java.lang.String" value="Gerenciamento de Fichas de Conserva&#xe7;&#xe3;o"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CadastroFichasActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
