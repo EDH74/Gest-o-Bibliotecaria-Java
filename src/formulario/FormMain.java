@@ -59,14 +59,6 @@ public class FormMain extends javax.swing.JFrame {
         return null;
     }
     
-    public FichaConservacao acharFicha(int code){
-        for (FichaConservacao f : listaFichas){
-            if(f.getCode() == code){
-                return f;
-            }
-        }
-        return null;
-    }
     
     //Funções de show
     public String showObras(){
@@ -98,15 +90,7 @@ public class FormMain extends javax.swing.JFrame {
         return msg;
     }
     
-     public String showFichasDeConservacao(){
-        String msg = "Fichas de Conservação cadastradas: ";
 
-        for (FichaConservacao f : listaFichas){
-            
-            msg += "\n " + f.toString() + "\n";   //Mostra todas as bibliotecarias cadastrada na lista
-        }
-        return msg;
-    }
     
 
     /**
@@ -171,8 +155,7 @@ public class FormMain extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoAbrirAcervoActionPerformed
 
     private void CadastroFichasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroFichasActionPerformed
-        FormCadastroFichaConservacao telaGerenciamentoFichas = new FormCadastroFichaConservacao(this, true, listaObras, auxList, bibliotecariaList, listaFichas);
-        telaGerenciamentoFichas.setVisible(true);
+        
 
     }//GEN-LAST:event_CadastroFichasActionPerformed
 
