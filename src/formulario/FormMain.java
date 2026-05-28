@@ -25,7 +25,7 @@ public class FormMain extends javax.swing.JFrame {
     final private ArrayList<Funcionario> auxList = new ArrayList();
     final private ArrayList<Bibliotecaria> bibliotecariaList = new ArrayList();
     final private ArrayList<Obra> listaObras = new ArrayList();
-    final private ArrayList<FichaConservacao> listaFichas = new ArrayList();
+    final private ArrayList<FichaConservacao> fichaConservacaoList = new ArrayList();
    
     
     
@@ -155,7 +155,8 @@ public class FormMain extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoAbrirAcervoActionPerformed
 
     private void CadastroFichasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroFichasActionPerformed
-        
+        FormControleFichaConservacao controleFichaConservacao = new FormControleFichaConservacao(this, true, auxList, bibliotecariaList, listaObras, fichaConservacaoList);
+        controleFichaConservacao.setVisible(true);
 
     }//GEN-LAST:event_CadastroFichasActionPerformed
 

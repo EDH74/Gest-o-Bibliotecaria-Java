@@ -4,8 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/eduar/OneDrive/Documentos/Gest-o-Bibliotecaria-Java/Gestao-biblioteca-Poo/src/formulario/FormMain.java</file>
-            <file>file:/C:/Users/eduar/OneDrive/Documentos/Gest-o-Bibliotecaria-Java/Gestao-biblioteca-Poo/src/formulario/FormCadastroFichaConservacao.java</file>
-            <file>file:/C:/Users/eduar/OneDrive/Documentos/Gest-o-Bibliotecaria-Java/Gestao-biblioteca-Poo/src/formulario/FormAcervo.java</file>
+            <file>file:/C:/Users/eduar/OneDrive/Documentos/Gest-o-Bibliotecaria-Java/Gestao-biblioteca-Poo/src/classes/Categoria.java</file>
+            <file>file:/C:/Users/eduar/OneDrive/Documentos/Gest-o-Bibliotecaria-Java/Gestao-biblioteca-Poo/src/classes/Intervencao.java</file>
+            <file>file:/C:/Users/eduar/OneDrive/Documentos/Gest-o-Bibliotecaria-Java/Gestao-biblioteca-Poo/src/classes/GerenciaFichaDeConservacao.java</file>
         </group>
     </open-files>
 </project-private>
