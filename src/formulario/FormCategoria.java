@@ -93,6 +93,7 @@ public class FormCategoria extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadastrarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarCategoriaActionPerformed
+
         try{
             String nome = JOptionPane.showInputDialog("Digite o nome da categoria");
             Categoria catExistente = principal.acharCategoria(nome);
@@ -108,6 +109,7 @@ public class FormCategoria extends javax.swing.JDialog {
         } catch(Exception e){
             JOptionPane.showMessageDialog(rootPane, "Erro: " + e.getMessage());
         }
+
     }//GEN-LAST:event_cadastrarCategoriaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

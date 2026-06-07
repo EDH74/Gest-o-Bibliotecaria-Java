@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/Gestao-biblioteca-Poo.iml" filepath="$PROJECT_DIR$/Gestao-biblioteca-Poo.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/gestor-biblioteca.iml" filepath="$PROJECT_DIR$/gestor-biblioteca.iml" />
+>>>>>>> ptest
     </modules>
   </component>
 </project>

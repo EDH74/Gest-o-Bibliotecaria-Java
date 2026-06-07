@@ -126,12 +126,18 @@ public class FormColaboradores extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mostrarCadastradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarCadastradosActionPerformed
-        if (auxButao.isSelected()){ 
-            taSaida.setText(principal.showAux());
-            return;
-        } else if(bibliotecarioButao.isSelected()){
-            taSaida.setText(principal.showBibliotecarias());
-            return;
+        try {
+            if (auxButao.isSelected()){ 
+
+                taSaida.setText(principal.showAux());
+                return;
+            } else if(bibliotecarioButao.isSelected()){
+                taSaida.setText(principal.showBibliotecarias());
+                return;
+            }
+        } catch (NullPointerException e) {
+
+            taSaida.setText("Erro interno: O sistema principal não foi carregado corretamente.");
         }
     }//GEN-LAST:event_mostrarCadastradosActionPerformed
 
@@ -139,198 +145,211 @@ public class FormColaboradores extends javax.swing.JDialog {
     
     
     private void appendColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appendColaboradorActionPerformed
-        try{
-             if (auxButao.isSelected()){ 
-            
-            int cod = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo do Auxiliar: "));
-            Funcionario funcionarioExistente = principal.acharAux(cod);
-            
-            if (funcionarioExistente != null){
-                taSaida.setText("Auxiliar já existe cadastrado");
-                taSaida.append("\n " + funcionarioExistente.toString());
-                return;
-            }
-            
-            String nome = JOptionPane.showInputDialog("Digite o nome do Auxiliar: ");
-            int qntTel = Integer.parseInt(JOptionPane.showInputDialog("Quantos telefones o auxiliar possui? "));
-            ArrayList<String> tel = new ArrayList();
-            
-            if (qntTel < 0) {
-                JOptionPane.showMessageDialog(rootPane, "Número de telefone inválido! pode ser modificado depois!");
-            } else if (qntTel == 0 ){
-                JOptionPane.showMessageDialog(rootPane, "O número pode ser modificado depois!");
-            } else{
-                int cont = 0;
-                while (cont < qntTel){
-                    tel.add(JOptionPane.showInputDialog("Adicione o número " + (cont+1) + ": "));
-                    cont ++;
-                }
-            }
-            
-            String turno = JOptionPane.showInputDialog("Digite o turno do auxiliar: ");
-            
-            Funcionario auxTemp = new Funcionario(cod, nome, tel, turno);
-            this.auxiliarList.add(auxTemp);
-            taSaida.setText("Funcionario "+ nome + " Adicionado com sucesso!");
-            
-            
-            
-        } else if(bibliotecarioButao.isSelected()){
-            Bibliotecaria bibliotecariaTemp = new Bibliotecaria();
-            
-            String crb = JOptionPane.showInputDialog("Digite o CRB do bibliotecario: ");
-            Bibliotecaria bibliotecariaExistente = principal.acharBibliotecaria(crb);
-            
-            
-            if (bibliotecariaExistente != null){
-                taSaida.setText("CRB já cadastrado no sistema tente outro!");
-                taSaida.append("\n " + bibliotecariaExistente.toString());
-                return;
-            }
-            
-            bibliotecariaTemp.setCrb(crb);
-            
-            String nome = JOptionPane.showInputDialog("Digite o nome do Bibliotecaria: ");
-            bibliotecariaTemp.setNome(nome);
-            int qntTel = Integer.parseInt(JOptionPane.showInputDialog("Quantos telefones o bibliotecario possui? "));
-          
-            
-            if (qntTel < 0) {
-                JOptionPane.showMessageDialog(rootPane, "Número de telefone inválido! pode ser modificado depois!");
-            } else if (qntTel == 0 ){
-                JOptionPane.showMessageDialog(rootPane, "O número pode ser modificado depois!");
-            } else{
-                int cont = 0;
-                while (cont < qntTel){
-                    bibliotecariaTemp.setTelefone((JOptionPane.showInputDialog("Adicione o número " + (cont+1) + ": ")));
-                    cont ++;
-                }
-            }
-            
-            
-            bibliotecariaTemp.setTurno(JOptionPane.showInputDialog("Digite o turno do auxiliar: "));
-            bibliotecariaTemp.setAreaAtuacao(JOptionPane.showInputDialog("A area de Atuação: "));
-            
-            this.bibliotecariaList.add(bibliotecariaTemp);
-            taSaida.setText("Funcionario "+ nome + " Adicionado com sucesso!");     
-           }  
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(rootPane, "Um erro inesperado aconteceu, tente novamente!");
-        }
 
+        try {
+            if (auxButao.isSelected()){ 
+                int cod = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo do Auxiliar: "));
+                Funcionario funcionarioExistente = principal.acharAux(cod);
+
+                if (funcionarioExistente != null){
+                    taSaida.setText("Auxiliar já existe cadastrado");
+                    taSaida.append("\n " + funcionarioExistente.toString());
+                    return;
+                }
+
+                String nome = JOptionPane.showInputDialog("Digite o nome do Auxiliar: ");
+
+                int qntTel = Integer.parseInt(JOptionPane.showInputDialog("Quantos telefones o auxiliar possui? "));
+                ArrayList<String> tel = new ArrayList();
+
+                if (qntTel < 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Número de telefone inválido! pode ser modificado depois!");
+                } else if (qntTel == 0 ){
+                    JOptionPane.showMessageDialog(rootPane, "O número pode ser modificado depois!");
+                } else{
+                    int cont = 0;
+                    while (cont < qntTel){
+                        tel.add(JOptionPane.showInputDialog("Adicione o número " + (cont+1) + ": "));
+                        cont ++;
+                    }
+                }
+
+                String turno = JOptionPane.showInputDialog("Digite o turno do auxiliar: ");
+
+                Funcionario auxTemp = new Funcionario(cod, nome, tel, turno);
+                this.auxiliarList.add(auxTemp);
+                taSaida.setText("Funcionario "+ nome + " Adicionado com sucesso!");
+
+            } else if(bibliotecarioButao.isSelected()){
+                Bibliotecaria bibliotecariaTemp = new Bibliotecaria();
+
+                String crb = JOptionPane.showInputDialog("Digite o CRB do bibliotecario: ");
+                Bibliotecaria bibliotecariaExistente = principal.acharBibliotecaria(crb);
+
+                if (bibliotecariaExistente != null){
+                    taSaida.setText("CRB já cadastrado no sistema tente outro!");
+                    taSaida.append("\n " + bibliotecariaExistente.toString());
+                    return;
+                }
+
+                bibliotecariaTemp.setCrb(crb);
+
+                String nome = JOptionPane.showInputDialog("Digite o nome do Bibliotecaria: ");
+                bibliotecariaTemp.setNome(nome);
+
+                
+                int qntTel = Integer.parseInt(JOptionPane.showInputDialog("Quantos telefones o bibliotecario possui? "));
+
+                if (qntTel < 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Número de telefone inválido! pode ser modificado depois!");
+                } else if (qntTel == 0 ){
+                    JOptionPane.showMessageDialog(rootPane, "O número pode ser modificado depois!");
+                } else{
+                    int cont = 0;
+                    while (cont < qntTel){
+                        bibliotecariaTemp.setTelefone((JOptionPane.showInputDialog("Adicione o número " + (cont+1) + ": ")));
+                        cont ++;
+                    }
+                }
+
+                bibliotecariaTemp.setTurno(JOptionPane.showInputDialog("Digite o turno do auxiliar: "));
+                bibliotecariaTemp.setAreaAtuacao(JOptionPane.showInputDialog("A area de Atuação: "));
+
+                this.bibliotecariaList.add(bibliotecariaTemp);
+                taSaida.setText("Funcionario "+ nome + " Adicionado com sucesso!");
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(rootPane, "Erro: Digite apenas números válidos para o código ou quantidade de telefones!");
+            taSaida.setText("Erro no cadastro: formato numérico inválido.");
+        }
     }//GEN-LAST:event_appendColaboradorActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         if (auxButao.isSelected()){
-            int cod = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo do Auxiliar: "));
-            Funcionario funcionarioExistente = principal.acharAux(cod);
-            
-            if (funcionarioExistente != null){
-                int comando = Integer.parseInt(JOptionPane.showInputDialog("Escolha o cod de troca - [1] Nome - [2] Turno - [3] Telefone"));
-                if (comando == 1){
-                    String nome = JOptionPane.showInputDialog("Digite o nome do Auxiliar que vai ser alterado: ");
-                    funcionarioExistente.setNome(nome);
-                    return;
-                } else if(comando == 2){
-                    String turno = JOptionPane.showInputDialog("Digite o novo turno do auxiliar: ");
-                    funcionarioExistente.setTurno(turno);
-                    return;
-                } else if(comando  == 3){
-                    int qntTel = Integer.parseInt(JOptionPane.showInputDialog("Quantos telefones o Auxiliar possui? "));
-                    
-                    if (qntTel < 0) {
-                        JOptionPane.showMessageDialog(rootPane, "Número de telefone inválido! pode ser modificado depois!");
-                    } else if (qntTel == 0 ){
-                        JOptionPane.showMessageDialog(rootPane, "O número pode ser modificado depois!");
-                    } else{
-                        int cont = 0;
-                        while (cont < qntTel){
-                            funcionarioExistente.setTelefone((JOptionPane.showInputDialog("Adicione o número " + (cont+1) + ": ")));
-                            cont ++;
-                        }
+         try {
+             if (auxButao.isSelected()){
+                int cod = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo do Auxiliar: "));
+                Funcionario funcionarioExistente = principal.acharAux(cod);
+
+                if (funcionarioExistente != null){
+                    int comando = Integer.parseInt(JOptionPane.showInputDialog("Escolha o cod de troca - [1] Nome - [2] Turno - [3] Telefone"));
+
+                    if (comando == 1){
+                        String nome = JOptionPane.showInputDialog("Digite o nome do Auxiliar que vai ser alterado: ");
+                        funcionarioExistente.setNome(nome);
                         return;
-                    }
-                } else{
-                    JOptionPane.showMessageDialog(rootPane, "Comando digitado invalido! tente novamente.");
-                    return;
-                } 
-         
-            } else{
-                JOptionPane.showMessageDialog(rootPane, "Código informado não existe tente novamente com um codigo valido!");
-                return;
-            }
-        } else if(bibliotecarioButao.isSelected()){
-            String crb = JOptionPane.showInputDialog("Digite o CRB do bibliotecario: ");
-            Bibliotecaria bibliotecariaExistente = principal.acharBibliotecaria(crb);
-            
-            
-            if (bibliotecariaExistente != null){
-                int comando = Integer.parseInt(JOptionPane.showInputDialog("Escolha o cod de troca - [1] Nome - [2] Turno - [3] Telefone"));
-                if (comando == 1){
-                    String nome = JOptionPane.showInputDialog("Digite o nome do bibliotecaria(o) que vai ser alterado: ");
-                    bibliotecariaExistente.setNome(nome);
-                    return;
-                } else if(comando == 2){
-                    String turno = JOptionPane.showInputDialog("Digite o novo turno do bibliotecaria(o): ");
-                    bibliotecariaExistente.setTurno(turno);
-                    return;
-                } else if(comando == 3){
-                    int qntTel = Integer.parseInt(JOptionPane.showInputDialog("Quantos telefones a(o) bibliotecaria(o) possui? "));
-                    
-                    if (qntTel < 0) {
-                        JOptionPane.showMessageDialog(rootPane, "Número de telefone inválido! pode ser modificado depois!");
-                    } else if (qntTel == 0 ){
-                        JOptionPane.showMessageDialog(rootPane, "O número pode ser modificado depois!");
-                    } else{
-                        int cont = 0;
-                        while (cont < qntTel){
-                            bibliotecariaExistente.setTelefone((JOptionPane.showInputDialog("Adicione o número " + (cont+1) + ": ")));
-                            cont ++;
-                        }
+                    } else if(comando == 2){
+                        String turno = JOptionPane.showInputDialog("Digite o novo turno do auxiliar: ");
+                        funcionarioExistente.setTurno(turno);
                         return;
-                    }
+                    } else if(comando == 3){
+                        int qntTel = Integer.parseInt(JOptionPane.showInputDialog("Quantos telefones o Auxiliar possui? "));
+
+                        if (qntTel < 0) {
+                            JOptionPane.showMessageDialog(rootPane, "Número de telefone inválido! pode ser modificado depois!");
+                        } else if (qntTel == 0 ){
+                            JOptionPane.showMessageDialog(rootPane, "O número pode ser modificado depois!");
+                        } else{
+                            int cont = 0;
+                            while (cont < qntTel){
+                                funcionarioExistente.setTelefone((JOptionPane.showInputDialog("Adicione o número " + (cont+1) + ": ")));
+                                cont ++;
+                            }
+                            return;
+                        }
+                    } else{
+                        JOptionPane.showMessageDialog(rootPane, "Comando digitado invalido! tente novamente.");
+                        return;
+                    } 
+
                 } else{
-                    JOptionPane.showMessageDialog(rootPane, "Comando digitado invalido! tente novamente.");
+                    JOptionPane.showMessageDialog(rootPane, "Código informado não existe tente novamente com um codigo valido!");
                     return;
                 }
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "CRB informado não existe tente novamente com um codigo valido!");
-                return;
+
+            } else if(bibliotecarioButao.isSelected()){
+                String crb = JOptionPane.showInputDialog("Digite o CRB do bibliotecario: ");
+                Bibliotecaria bibliotecariaExistente = principal.acharBibliotecaria(crb);
+
+                if (bibliotecariaExistente != null){
+                    int comando = Integer.parseInt(JOptionPane.showInputDialog("Escolha o cod de troca - [1] Nome - [2] Turno - [3] Telefone"));
+
+                    if (comando == 1){
+                        String nome = JOptionPane.showInputDialog("Digite o nome do bibliotecaria(o) que vai ser alterado: ");
+                        bibliotecariaExistente.setNome(nome);
+                        return;
+                    } else if(comando == 2){
+                        String turno = JOptionPane.showInputDialog("Digite o novo turno do bibliotecaria(o): ");
+                        bibliotecariaExistente.setTurno(turno);
+                        return;
+                    } else if(comando == 3){
+                        int qntTel = Integer.parseInt(JOptionPane.showInputDialog("Quantos telefones a(o) bibliotecaria(o) possui? "));
+
+                        if (qntTel < 0) {
+                            JOptionPane.showMessageDialog(rootPane, "Número de telefone inválido! pode ser modificado depois!");
+                        } else if (qntTel == 0 ){
+                            JOptionPane.showMessageDialog(rootPane, "O número pode ser modificado depois!");
+                        } else{
+                            int cont = 0;
+                            while (cont < qntTel){
+                                bibliotecariaExistente.setTelefone((JOptionPane.showInputDialog("Adicione o número " + (cont+1) + ": ")));
+                                cont ++;
+                            }
+                            return;
+                        }
+                    } else{
+                        JOptionPane.showMessageDialog(rootPane, "Comando digitado invalido! tente novamente.");
+                        return;
+                    }
+                } else{
+                    JOptionPane.showMessageDialog(rootPane, "CRB informado não existe tente novamente com um codigo valido!");
+                    return;
+                }
             }
+        
+        }
+        catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(rootPane, "Erro: Entrada inválida! Certifique-se de digitar apenas números onde for solicitado.");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
-        if (auxButao.isSelected()){
-            int cod = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo do Auxiliar: "));
-            Funcionario funcionarioExistente = principal.acharAux(cod);
-            if (funcionarioExistente != null){
-                taSaida.setText("Funcionario " + funcionarioExistente.getNome() + " removido da base de dados!");
-                auxiliarList.remove(funcionarioExistente);
-                return;
-            } else{
-                taSaida.setText("Funcionario não existe cadastrado na base de dados");
-                return;
+        try {
+        
+            if (auxButao.isSelected()){
+                int cod = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo do Auxiliar: "));
+                Funcionario funcionarioExistente = principal.acharAux(cod);
+
+                if (funcionarioExistente != null){
+                    taSaida.setText("Funcionario " + funcionarioExistente.getNome() + " removido da base de dados!");
+                    auxiliarList.remove(funcionarioExistente);
+                    return;
+                } else {
+                    taSaida.setText("Funcionario não existe cadastrado na base de dados");
+                    return;
+                }
+
+            } else if(bibliotecarioButao.isSelected()){
+                String crb = JOptionPane.showInputDialog("Digite o CRB do bibliotecario: ");
+                Bibliotecaria bibliotecariaExistente = principal.acharBibliotecaria(crb);
+
+                if (bibliotecariaExistente != null){
+                    taSaida.setText("Funcionario " + bibliotecariaExistente.getNome() + " removido da base de dados!");
+                    bibliotecariaList.remove(bibliotecariaExistente);
+                    return;
+                } else {
+                    taSaida.setText("Funcionario não existe cadastrado na base de dados");
+                    return;
+                }
             }
-        } else if(bibliotecarioButao.isSelected()){
-            String crb = JOptionPane.showInputDialog("Digite o CRB do bibliotecario: ");
-            Bibliotecaria bibliotecariaExistente = principal.acharBibliotecaria(crb);
-            if (bibliotecariaExistente != null){
-                taSaida.setText("Funcionario " + bibliotecariaExistente.getNome() + " removido da base de dados!");
-                bibliotecariaList.remove(bibliotecariaExistente);
-                return;
-            } else{
-                taSaida.setText("Funcionario não existe cadastrado na base de dados");
-                return;
-            }
+        
+        }
+        catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(rootPane, "Erro: O código do auxiliar precisa ser um número inteiro válido!");
+            taSaida.setText("Falha na remoção: formato de código inválido.");
         }
     }//GEN-LAST:event_removeActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton appendColaborador;
