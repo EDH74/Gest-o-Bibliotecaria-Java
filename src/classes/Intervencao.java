@@ -3,14 +3,15 @@ package classes;
 
 public class Intervencao {
     private int id;
-    private String nome, data, custo, relato;
-    private Funcionario colaborador;
+    private String nome, data, relato;
+    private double custo;
+    private Colaborador colaborador;
     private Categoria categoria;
     
     public Intervencao(){
     }
 
-    public Intervencao(int id, String nome, String data, String custo, String relato, Funcionario colaborador, Categoria categoria) {
+    public Intervencao(int id, String nome, String data, Double custo, String relato, Colaborador colaborador, Categoria categoria) {
         this.id = id;
         this.nome = nome;
         this.data = data;
@@ -34,7 +35,7 @@ public class Intervencao {
         this.data = data;
     }
 
-    public void setCusto(String custo) {
+    public void setCusto(Double custo) {
         this.custo = custo;
     }
 
@@ -42,7 +43,7 @@ public class Intervencao {
         this.relato = relato;
     }
 
-    public void setColaborador(Funcionario colaborador) {
+    public void setColaborador(Colaborador colaborador) {
         this.colaborador = colaborador;
     }
 
@@ -64,7 +65,7 @@ public class Intervencao {
         return data;
     }
 
-    public String getCusto() {
+    public Double getCusto() {
         return custo;
     }
 
@@ -72,7 +73,7 @@ public class Intervencao {
         return relato;
     }
 
-    public Funcionario getColaborador() {
+    public Colaborador getColaborador() {
         return colaborador;
     }
 

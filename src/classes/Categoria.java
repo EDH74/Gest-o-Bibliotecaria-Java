@@ -2,23 +2,23 @@ package classes;
 
 
 public class Categoria {
-    private String name;
+    private String nome;
     private int code;
 
-    public Categoria(String name, int code) {
-        this.name = name;
+    public Categoria(String nome, int code) {
+        this.nome = nome;
         this.code = code;
     }
     
     public Categoria(){
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public int getCode() {
@@ -31,7 +31,7 @@ public class Categoria {
 
     @Override
     public String toString() {
-        return "Categoria{" + "name=" + name + ", code=" + code + '}';
+        return this.nome;
     }
     
 }

@@ -1,7 +1,7 @@
 package classes;
 import java.util.ArrayList;
 
-public class Funcionario {
+public class Funcionario implements Colaborador {
     private int codInterno;
     private String nome, turno;
     private ArrayList<String> telefone;
@@ -39,6 +39,7 @@ public class Funcionario {
         return codInterno;
     }
 
+    @Override
     public String getNome() {
         return nome;
     }
