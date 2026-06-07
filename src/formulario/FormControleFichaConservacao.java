@@ -77,7 +77,7 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         comboBoxFuncionarios = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        modificaInfo = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         auxRadio = new javax.swing.JRadioButton();
         bibliotecarioRadio = new javax.swing.JRadioButton();
@@ -105,8 +105,8 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
 
         jButton2.setText("Excluir Intervenção");
 
-        jButton3.setText("Modificar Informações");
-        jButton3.addActionListener(this::jButton3ActionPerformed);
+        modificaInfo.setText("Modificar Informações");
+        modificaInfo.addActionListener(this::modificaInfoActionPerformed);
 
         jButton4.setText("Lista Intervenções cadastrada na obra");
         jButton4.addActionListener(this::jButton4ActionPerformed);
@@ -141,7 +141,7 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(cadastrarIntervencao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE))
+                                    .addComponent(modificaInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton4)
@@ -174,7 +174,7 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modificaInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,8 +194,8 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(comboBoxCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE))
         );
 
         pack();
@@ -205,9 +205,18 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxFuncionariosActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void modificaInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificaInfoActionPerformed
+        String obraSelecionada = (String) comboBoxObras.getSelectedItem();
+        String[] isbn = obraSelecionada.split("-");
+        Obra obra = principal.acharObra(isbn[1]);  //Pega a obra 
+        FichaConservacao fichaExistente = principal.acharFichaConservacao(obra);  //pega a ficha de conservação da obra
+        
+        if(fichaExistente != null){
+            
+        }
+        
+        
+    }//GEN-LAST:event_modificaInfoActionPerformed
 
     private void bibliotecarioRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecarioRadioActionPerformed
        
@@ -262,6 +271,8 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Erro: " + e.getMessage());
         }
         
+        principal.atualizarIdFichas();
+        
     }//GEN-LAST:event_cadastrarIntervencaoActionPerformed
 
     private void comboBoxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxCategoriaActionPerformed
@@ -276,7 +287,7 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
         
         
         taSaida.setText("Todas Intervenções existentes da Obra " + isbn[0] + ":\n" );
-        taSaida.append(fichaExistente.retornarTodasIntervencoes());
+        taSaida.append(fichaExistente.retornarFichaConservacaoCompleta());
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -292,12 +303,12 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> comboBoxObras;
     private javax.swing.ButtonGroup funcionariosGroup;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton modificaInfo;
     private javax.swing.JTextArea taSaida;
     // End of variables declaration//GEN-END:variables
 }

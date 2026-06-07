@@ -27,6 +27,7 @@ public class Intervencao {
                 break;
             case "Higienizacao":
                 this.custo = 50.99;
+                break;
             default:
                 throw new RuntimeException("Não existe essa ação solicitada");
         }

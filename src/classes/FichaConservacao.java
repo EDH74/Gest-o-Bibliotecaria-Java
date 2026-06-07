@@ -77,6 +77,10 @@ public class FichaConservacao implements GerenciarFichaConservacao{
        return relatorio;
    }
    
+   public void setCodigoFicha(int codigoFicha){
+       this.codigoFicha = codigoFicha;
+   }
+   
    public int getCodigoFicha() {
        return codigoFicha;
    }

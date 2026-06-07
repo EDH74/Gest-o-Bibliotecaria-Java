@@ -173,7 +173,15 @@ public class FormMain extends javax.swing.JFrame {
     }
     
 
-    
+    //Função Ficha de Conservação
+    public void atualizarIdFichas() {
+        int cont = 1;
+        
+        for (FichaConservacao i : listaFicha){
+            i.setCodigoFicha(cont);
+            cont ++;
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -250,7 +258,7 @@ public class FormMain extends javax.swing.JFrame {
     }//GEN-LAST:event_CadastroFichasActionPerformed
 
     private void VerRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerRelatoriosActionPerformed
-        FormRelatorio telaRelatorio = new FormRelatorio(this, true, this.listaObras);
+        FormRelatorio telaRelatorio = new FormRelatorio(this, true, this.listaObras, this.listaFicha);
         
         telaRelatorio.setLocationRelativeTo(this);
         

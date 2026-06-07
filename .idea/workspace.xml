@@ -2,13 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93605696-5f7a-4cc5-9f9f-f6fbd35280c2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/classes/FichaConservacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/FichaConservacao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/GerenciarFichaConservacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/GerenciarFichaConservacao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/Intervencao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Intervencao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gestor-biblioteca.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/private/private.properties" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/private/private.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/Obra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Obra.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/formulario/FormAcervo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/formulario/FormAcervo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/formulario/FormControleFichaConservacao.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/formulario/FormControleFichaConservacao.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/formulario/FormControleFichaConservacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/formulario/FormControleFichaConservacao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/formulario/FormCategoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/formulario/FormCategoria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/formulario/FormColaboradores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/formulario/FormColaboradores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/formulario/FormMain.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/formulario/FormMain.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/formulario/FormMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/formulario/FormMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/formulario/FormRelatorio.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/formulario/FormRelatorio.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/formulario/FormRelatorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/formulario/FormRelatorio.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,10 +24,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="3Ep2JLMtQCoyV0z1pmMaLNTwhmC" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -34,7 +40,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "developer",
+    "git-widget-placeholder": "Merging developer",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>

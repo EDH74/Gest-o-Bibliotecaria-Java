@@ -10,14 +10,17 @@ public class FormRelatorio extends javax.swing.JDialog {
 
     
     private ArrayList<Obra> listaObrasDoMain;
-    private ArrayList<FichaConservacao> listaFichasDoMain;
+    private ArrayList<FichaConservacao> listaFicha;
+    FormMain principal;
     
-    public FormRelatorio(java.awt.Frame parent, boolean modal, ArrayList<Obra> listaObrasNoRelatorio) {
+    public FormRelatorio(java.awt.Frame parent, boolean modal, ArrayList<Obra> listaObrasNoRelatorio, ArrayList<FichaConservacao> listaFicha) {
         super(parent, modal);
         initComponents();
         
         this.listaObrasDoMain = listaObrasNoRelatorio;
+        this.listaFicha = listaFicha;
         
+        principal = (FormMain) this.getParent();
         this.inserirObrasNoComboB();
     }
 
@@ -25,7 +28,7 @@ public class FormRelatorio extends javax.swing.JDialog {
         cbObras.removeAllItems();
         
         for(Obra ob : this.listaObrasDoMain) {
-            cbObras.addItem(ob.getTitulo());
+            cbObras.addItem(ob.getTitulo() + "-" + ob.getIsbn());
         }
     }
     
@@ -36,7 +39,7 @@ public class FormRelatorio extends javax.swing.JDialog {
         cbObras = new javax.swing.JComboBox<>();
         verRelatorio = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        taSaida = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -45,9 +48,9 @@ public class FormRelatorio extends javax.swing.JDialog {
         verRelatorio.setText("Ver Relátorio");
         verRelatorio.addActionListener(this::verRelatorioActionPerformed);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        taSaida.setColumns(20);
+        taSaida.setRows(5);
+        jScrollPane1.setViewportView(taSaida);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,27 +82,19 @@ public class FormRelatorio extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void verRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verRelatorioActionPerformed
+        taSaida.setText("");
         try {
-            Obra obraSelecionada = (Obra) cbObras.getSelectedItem();
-    
-            FichaConservacao fichaDaObra = null;
-        
-            for (FichaConservacao fc : this.listaFichasDoMain) {
-                if (fc.getObra().equals(obraSelecionada)) {
-                    fichaDaObra = fc;
-                    break;
-                }
-            }
-    
-   
-            String textoRelatorio = fichaDaObra.retornarFichaConservacaoCompleta();
-            jTextArea1.setText(textoRelatorio); 
-    
-            } catch (NullPointerException e) {
-            jTextArea1.setText("Erro: Selecione uma obra válida ou verifique se a lista de fichas existe.");
-    
-            } catch (Exception e) {
-                jTextArea1.setText("Ocorreu um erro inesperado: " + e.getMessage());
+           String obraSelecionada = (String) cbObras.getSelectedItem();
+            String[] isbn = obraSelecionada.split("-");
+            Obra obra = principal.acharObra(isbn[1]);
+            FichaConservacao fichaExistente = principal.acharFichaConservacao(obra);
+            
+            if (fichaExistente != null){
+                taSaida.setText(fichaExistente.retornarFichaConservacaoCompleta());
+            }else return;
+            
+            }  catch (Exception e) {
+                taSaida.setText(e.getMessage());
             }
     }//GEN-LAST:event_verRelatorioActionPerformed
 
@@ -108,7 +103,7 @@ public class FormRelatorio extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbObras;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea taSaida;
     private javax.swing.JButton verRelatorio;
     // End of variables declaration//GEN-END:variables
 }
