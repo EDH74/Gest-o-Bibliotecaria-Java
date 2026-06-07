@@ -5,8 +5,7 @@
 package formulario;
 
 import java.util.ArrayList;
-import classes.Obra;
-import classes.Autor;
+import classes.*;
 import javax.swing.JOptionPane;
 
 

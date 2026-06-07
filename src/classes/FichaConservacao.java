@@ -4,31 +4,30 @@ import java.util.ArrayList;
 public class FichaConservacao implements GerenciarFichaConservacao{
     private int codigoFicha;
     private Obra obra;
-    private ArrayList<Intervencao> listaIntervencoes;
-    
-    public FichaConservacao(int codigoFicha, Obra obra) {
-        this.codigoFicha = codigoFicha;
+    private String colaborador;
+    private ArrayList<Intervencao> listaIntervencoes = new ArrayList();
+
+    public FichaConservacao(Obra obra) {
         this.obra = obra;
-        this.listaIntervencoes = new ArrayList<>();
     }
     
-    
-    @Override
-    public void inserirIntervencao(String nome, double custo, String relato, Colaborador colaborador, Categoria categoria){
-        int proximoCodigo = this.listaIntervencoes.size() + 1;
-        Funcionario func = (Funcionario) colaborador;
+   
+    public void inserirIntervencao(Obra obra, String nome, String data, String acao, String relato, String colaborador, Categoria categoria){
         
-        Intervencao novaIntervencao = new Intervencao(proximoCodigo, nome, "12/10/2026", custo, relato, func, categoria);
+        this.colaborador = colaborador;
+        this.obra = obra;
+        Intervencao novaIntervencao = new Intervencao(nome, data, acao, relato, colaborador, categoria);
         this.listaIntervencoes.add(novaIntervencao);
+        this.atualizarIdFichas(); 
     }
    
     
    @Override 
    public String retornarTodasIntervencoes(){
-       String texto = "";
+       String texto = "Obra: " + this.obra + "\n";
        for (Intervencao i : listaIntervencoes) {
            texto += "Cod: " + i.getId() + " | " + i.getNome() +
-                   " | Resp: " + i.getColaborador().getNome() +
+                   " | Resp: " + this.colaborador +
                    " | Cate: " + i.getCategoria().getNome() + "\n";
        }
        return texto;
@@ -49,6 +48,7 @@ public class FichaConservacao implements GerenciarFichaConservacao{
    public int quantidadeDeIntervencoes(){
        return this.listaIntervencoes.size();
    }
+   
    
    
    @Override
@@ -84,5 +84,25 @@ public class FichaConservacao implements GerenciarFichaConservacao{
    public Obra getObra(){
        return obra;
    }
+
+    @Override
+    public void atualizarIdFichas() {
+        int cont = 1;
+        
+        for (Intervencao inter : listaIntervencoes){
+            inter.setId(cont);
+            cont ++;
+        }
+    }
+
+    @Override
+    public Intervencao acharIntervencao(int id) {
+        for (Intervencao i : this.listaIntervencoes){
+            if (i.getId() == id) return i;
+        }
+        return null;
+    }
+    
+   
    
 }

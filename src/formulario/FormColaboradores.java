@@ -7,8 +7,6 @@ package formulario;
 import java.util.ArrayList;
 import classes.Bibliotecaria;
 import classes.Funcionario;
-import java.util.EnumSet;
-import java.util.Set;
 import javax.swing.JOptionPane;
 
 /**
@@ -141,7 +139,8 @@ public class FormColaboradores extends javax.swing.JDialog {
     
     
     private void appendColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appendColaboradorActionPerformed
-        if (auxButao.isSelected()){ 
+        try{
+             if (auxButao.isSelected()){ 
             
             int cod = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo do Auxiliar: "));
             Funcionario funcionarioExistente = principal.acharAux(cod);
@@ -212,10 +211,12 @@ public class FormColaboradores extends javax.swing.JDialog {
             bibliotecariaTemp.setTurno(JOptionPane.showInputDialog("Digite o turno do auxiliar: "));
             bibliotecariaTemp.setAreaAtuacao(JOptionPane.showInputDialog("A area de Atuação: "));
             
-            
             this.bibliotecariaList.add(bibliotecariaTemp);
-            taSaida.setText("Funcionario "+ nome + " Adicionado com sucesso!");
-            
+            taSaida.setText("Funcionario "+ nome + " Adicionado com sucesso!");     
+           }  
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane, "Um erro inesperado aconteceu, tente novamente!");
         }
 
     }//GEN-LAST:event_appendColaboradorActionPerformed

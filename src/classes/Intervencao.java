@@ -3,22 +3,41 @@ package classes;
 
 public class Intervencao {
     private int id;
-    private String nome, data, relato;
+    private String nome, data, relato, acao, colaborador;
     private double custo;
-    private Colaborador colaborador;
     private Categoria categoria;
     
     public Intervencao(){
     }
 
-    public Intervencao(int id, String nome, String data, Double custo, String relato, Colaborador colaborador, Categoria categoria) {
-        this.id = id;
+    public Intervencao(String nome, String data, String acao, String relato, String colaborador, Categoria categoria) {
         this.nome = nome;
         this.data = data;
-        this.custo = custo;
+        this.acao = acao;
         this.relato = relato;
         this.colaborador = colaborador;
         this.categoria = categoria;
+        
+        switch (acao) {
+            case "Restauro":
+                this.custo = 120.00;
+                break;
+            case "Encardenacao":
+                this.custo = 60.00;
+                break;
+            case "Higienizacao":
+                this.custo = 50.99;
+            default:
+                throw new RuntimeException("Não existe essa ação solicitada");
+        }
+    }
+
+    public String getAcao() {
+        return acao;
+    }
+
+    public void setAcao(String acao) {
+        this.acao = acao;
     }
     
     //Setters
@@ -35,15 +54,12 @@ public class Intervencao {
         this.data = data;
     }
 
-    public void setCusto(Double custo) {
-        this.custo = custo;
-    }
 
     public void setRelato(String relato) {
         this.relato = relato;
     }
 
-    public void setColaborador(Colaborador colaborador) {
+    public void setColaborador(String colaborador) {
         this.colaborador = colaborador;
     }
 
@@ -73,7 +89,7 @@ public class Intervencao {
         return relato;
     }
 
-    public Colaborador getColaborador() {
+    public String getColaborador() {
         return colaborador;
     }
 

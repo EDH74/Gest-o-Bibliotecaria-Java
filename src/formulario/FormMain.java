@@ -20,14 +20,60 @@ public class FormMain extends javax.swing.JFrame {
      */
     public FormMain() {
         initComponents();
+        this.autoCategoria();
+        this.testUser();
+        this.testObras();
     }
     
     final private ArrayList<Funcionario> auxList = new ArrayList();
     final private ArrayList<Bibliotecaria> bibliotecariaList = new ArrayList();
     final private ArrayList<Obra> listaObras = new ArrayList();
-    final private ArrayList<FichaConservacao> fichaConservacaoList = new ArrayList();
     final private ArrayList<Categoria> categoriaList = new ArrayList();
+    final private ArrayList<FichaConservacao> listaFicha = new ArrayList();
    
+    
+    
+    public void autoCategoria(){
+      if(categoriaList != null && !categoriaList.isEmpty()) return;
+      
+        Categoria ct1 = new Categoria("Restauração de páginas");
+        Categoria ct2 = new Categoria("Capa Dura");
+        Categoria ct3 = new Categoria("Tratamento de Fungo");
+        Categoria ct4 = new Categoria("Catalogação Física");
+        Categoria ct5 = new Categoria("Outros");
+        categoriaList.add(ct1);
+        categoriaList.add(ct2);
+        categoriaList.add(ct3);
+        categoriaList.add(ct4);
+        categoriaList.add(ct5);
+    }
+    
+    private void testUser(){
+        ArrayList<String> tel = new ArrayList();
+        tel.add("298498498");
+        
+        Funcionario f1 = new Funcionario(1, "Eduardo", tel, "Dia");
+        Funcionario f2 = new Funcionario(2, "Rafael", tel, "noite");
+        auxList.add(f1);
+        auxList.add(f2);
+        
+        Bibliotecaria b1 = new Bibliotecaria("1231651", "T.i");
+        Bibliotecaria b2 = new Bibliotecaria("31651", "Construtor");
+        bibliotecariaList.add(b1);
+        bibliotecariaList.add(b2);
+    }
+    
+    private void testObras(){
+        ArrayList<Autor> listAutor = new ArrayList();
+        Autor aut1 = new Autor("Nome1", "Brasil");
+        Autor aut2 = new Autor("Nome2", "JP");
+        
+        Obra ob1 = new Obra("Titulo 1", "asda/2", "02/01/2025", "Editora1");
+        Obra ob2 = new Obra("Titulo 22", "as/2", "01/01/2024", "Editora2");
+        
+        listaObras.add(ob1);
+        listaObras.add(ob2);
+    }
     
     
     //Funções de Busca
@@ -78,6 +124,15 @@ public class FormMain extends javax.swing.JFrame {
         return null;
     }
     
+    
+    public FichaConservacao acharFichaConservacao(Obra obra){
+        for (FichaConservacao i : listaFicha){
+            if (i.getObra() == obra){
+                return i;
+            }
+        }
+        return null;
+    }
     
     //Funções de show
     public String showObras(){
@@ -182,8 +237,9 @@ public class FormMain extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoAbrirAcervoActionPerformed
 
     private void CadastroFichasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroFichasActionPerformed
-        FormControleFichaConservacao controleFichaConservacao = new FormControleFichaConservacao(this, true, auxList, bibliotecariaList, listaObras, fichaConservacaoList);
+        FormControleFichaConservacao controleFichaConservacao = new FormControleFichaConservacao(this, true, auxList, bibliotecariaList, listaObras, listaFicha, categoriaList);
         controleFichaConservacao.setVisible(true);
+     
     }//GEN-LAST:event_CadastroFichasActionPerformed
 
     /**

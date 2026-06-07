@@ -9,6 +9,15 @@ public class Obra {
     
     public Obra(){
     }
+
+    public Obra(String titulo, String isbn, String data, String editora) {
+        this.titulo = titulo;
+        this.isbn = isbn;
+        this.data = data;
+        this.editora = editora;
+    }
+    
+    
     
     //getter e setter de Titulo!
     public String getTitulo() {

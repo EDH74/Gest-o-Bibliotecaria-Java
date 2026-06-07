@@ -1,8 +1,7 @@
 package classes;
 
 public interface GerenciarFichaConservacao {
-    public void inserirIntervencao(String nome, double custo, String relato, Colaborador colaborador, Categoria categoria);
-    
+ 
     public String retornarTodasIntervencoes();
     
     public String retornarFichaConservacaoCompleta();
@@ -11,4 +10,7 @@ public interface GerenciarFichaConservacao {
     
     public int quantidadeDeIntervencoes();
     
+    public void atualizarIdFichas();
+    
+    public Intervencao acharIntervencao(int id);
 }
