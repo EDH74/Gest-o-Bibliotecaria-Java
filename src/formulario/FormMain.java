@@ -184,7 +184,6 @@ public class FormMain extends javax.swing.JFrame {
     private void CadastroFichasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroFichasActionPerformed
         FormControleFichaConservacao controleFichaConservacao = new FormControleFichaConservacao(this, true, auxList, bibliotecariaList, listaObras, fichaConservacaoList);
         controleFichaConservacao.setVisible(true);
-        System.out.println(this.showObras());
     }//GEN-LAST:event_CadastroFichasActionPerformed
 
     /**
