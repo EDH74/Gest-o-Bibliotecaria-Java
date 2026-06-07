@@ -26,6 +26,7 @@ public class FormMain extends javax.swing.JFrame {
     final private ArrayList<Bibliotecaria> bibliotecariaList = new ArrayList();
     final private ArrayList<Obra> listaObras = new ArrayList();
     final private ArrayList<FichaConservacao> fichaConservacaoList = new ArrayList();
+    final private ArrayList<Categoria> categoriaList = new ArrayList();
    
     
     
@@ -59,6 +60,24 @@ public class FormMain extends javax.swing.JFrame {
         return null;
     }
     
+    public Categoria acharCategoria(String nome){
+        for (Categoria i : categoriaList){
+            if (i.getNome().equals(nome)){   //Busca Categoria por nome
+                return i;
+            }
+        }
+        return null;
+    }
+    
+    public Categoria acharCategoria(int cod){
+        for (Categoria i : categoriaList){
+            if (cod == i.getCode()){   //Busca Categoria por id
+                return i;
+            }
+        }
+        return null;
+    }
+    
     
     //Funções de show
     public String showObras(){
@@ -86,6 +105,14 @@ public class FormMain extends javax.swing.JFrame {
 
         for (Funcionario b : bibliotecariaList){
             msg += "\n " + b.toString();   //Mostra todas as bibliotecarias cadastrada na lista
+        }
+        return msg;
+    }
+    
+    public String showCategorias(){
+        String msg = "Todas as Categorias cadastradas: ";
+        for (Categoria c : categoriaList){
+            msg += "\n " + c.toString();   //Mostra todas as bibliotecarias cadastrada na lista
         }
         return msg;
     }
@@ -157,7 +184,7 @@ public class FormMain extends javax.swing.JFrame {
     private void CadastroFichasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroFichasActionPerformed
         FormControleFichaConservacao controleFichaConservacao = new FormControleFichaConservacao(this, true, auxList, bibliotecariaList, listaObras, fichaConservacaoList);
         controleFichaConservacao.setVisible(true);
-
+        System.out.println(this.showObras());
     }//GEN-LAST:event_CadastroFichasActionPerformed
 
     /**

@@ -3,11 +3,10 @@ package classes;
 
 public class Categoria {
     private String nome;
-    private int code;
+    private int id;
 
-    public Categoria(String nome, int code) {
+    public Categoria(String nome) {
         this.nome = nome;
-        this.code = code;
     }
     
     public Categoria(){
@@ -22,11 +21,11 @@ public class Categoria {
     }
 
     public int getCode() {
-        return code;
+        return id;
     }
 
     public void setCode(int code) {
-        this.code = code;
+        this.id = code;
     }
 
     @Override

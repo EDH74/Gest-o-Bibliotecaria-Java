@@ -18,16 +18,14 @@ import javax.swing.JOptionPane;
 public class FormAcervo extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormAcervo.class.getName());
-    private ArrayList<Obra> listaObraNoAcervo;
     ArrayList<Obra> listaObra = new ArrayList();
-    /**
-     * Creates new form FormAcervo1
-     */
+    FormMain principal;
+    
     public FormAcervo(java.awt.Frame parent, boolean modal, ArrayList<Obra> listaObras) {
         super(parent, modal);
         initComponents();
-        
-        this.listaObraNoAcervo = listaObras;
+        this.listaObra = listaObras;
+        principal = (FormMain) this.getParent();
     }
 
     /**

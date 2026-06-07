@@ -13,25 +13,38 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
     FormMain principal;
     
     public FormControleFichaConservacao(java.awt.Frame parent, boolean modal, ArrayList<Funcionario> auxList, ArrayList<Bibliotecaria> bibliotecariaList, ArrayList<Obra> listaObras, ArrayList<FichaConservacao> fichaConservacaoList) {
+        super(parent, modal);
         this.auxList = auxList;
         this.bibliotecariaList = bibliotecariaList;
         this.listaObras = listaObras;
         this.fichaConservacaoList = fichaConservacaoList;
-        
-      
-        
-        super(parent, modal);
         initComponents();
-        principal = (FormMain) this.getParent();
+        principal = (FormMain) this.getParent();     
         
-        updateComboObras();
+        updateComboFuncionarios();
+        updateComboObra();
     }
     
-    public void updateComboObras(){
+    public void updateComboObra(){
         comboBoxObras.removeAllItems();
         
         for (Obra o : listaObras){
             comboBoxObras.addItem(o.getTitulo());
+        }
+    }
+    
+    
+    public void updateComboFuncionarios(){
+        if(auxRadio.isSelected()){
+            comboBoxFuncionarios.removeAllItems();
+            for (Funcionario f : auxList){
+                comboBoxFuncionarios.addItem(f.getNome());
+            }
+        }else if(bibliotecarioRadio.isSelected()){
+            comboBoxFuncionarios.removeAllItems();
+            for (Funcionario f : bibliotecariaList){
+                comboBoxFuncionarios.addItem(f.getNome());
+            }
         }
     }
     
@@ -80,7 +93,9 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
         jButton4.setText("Lista Intervenções cadastrada na obra");
 
         funcionariosGroup.add(auxRadio);
+        auxRadio.setSelected(true);
         auxRadio.setText("Auxiliar");
+        auxRadio.addActionListener(this::auxRadioActionPerformed);
 
         funcionariosGroup.add(bibliotecarioRadio);
         bibliotecarioRadio.setText("Bibliotecario (a)");
@@ -162,12 +177,16 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void bibliotecarioRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecarioRadioActionPerformed
-        // TODO add your handling code here:
+        updateComboFuncionarios();
     }//GEN-LAST:event_bibliotecarioRadioActionPerformed
 
     private void comboBoxObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxObrasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxObrasActionPerformed
+
+    private void auxRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_auxRadioActionPerformed
+        updateComboFuncionarios();
+    }//GEN-LAST:event_auxRadioActionPerformed
 
     
    
