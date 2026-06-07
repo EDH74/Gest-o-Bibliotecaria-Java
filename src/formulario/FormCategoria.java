@@ -99,9 +99,7 @@ public class FormCategoria extends javax.swing.JDialog {
         String nome = JOptionPane.showInputDialog(this, "Digite o nome da categoria:");
         int codigo = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite o código da categoria:"));
 
-        if (nome == null || codigo == null) {
-            return;
-        }
+        
 
         
         
