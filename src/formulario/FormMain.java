@@ -194,7 +194,7 @@ public class FormMain extends javax.swing.JFrame {
     }//GEN-LAST:event_CadastroFichasActionPerformed
 
     private void VerRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerRelatoriosActionPerformed
-        FormRelatorio telaRelatorio = new FormRelatorio(this, true);
+        FormRelatorio telaRelatorio = new FormRelatorio(this, true, this.listaObras);
         
         telaRelatorio.setLocationRelativeTo(this);
         

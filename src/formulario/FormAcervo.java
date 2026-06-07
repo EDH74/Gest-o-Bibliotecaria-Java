@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package formulario;
 
 import java.util.ArrayList;
@@ -77,29 +73,41 @@ public class FormAcervo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void inserirObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inserirObraActionPerformed
-        int qtdAutores;
-        Obra ob = new Obra();
-        
-        ob.setTitulo(JOptionPane.showInputDialog("Título:"));
-        ob.setData(JOptionPane.showInputDialog("Ano de publicação:"));
-        ob.setEditora(JOptionPane.showInputDialog("Editora:"));
-        ob.setIsbn(JOptionPane.showInputDialog("Código ISBN:"));
-        qtdAutores = Integer.parseInt(JOptionPane.showInputDialog("Quantidade de autores:"));
-        
-        for(int i = 0; i < qtdAutores; i++){
-            Autor aut = new Autor();
+        try {
+            int qtdAutores;
+            Obra ob = new Obra();
+
+            ob.setTitulo(JOptionPane.showInputDialog("Título:"));
+            ob.setData(JOptionPane.showInputDialog("Ano de publicação:"));
+            ob.setEditora(JOptionPane.showInputDialog("Editora:"));
+            ob.setIsbn(JOptionPane.showInputDialog("Código ISBN:"));
+
             
-            aut.setNome(JOptionPane.showInputDialog("Nome do Autor " + (i + 1) + ":"));
-            aut.setNascionalidade(JOptionPane.showInputDialog("Nacionalidade:"));
-           
-            ob.setAutores(aut);
-        }
-        
-        
-        listaObra.add(ob);
-        taSaida.setText("Obra cadastrada com sucesso!");
-        for (Obra obr : listaObra){
-            taSaida.append("\n" + obr.toString());
+            qtdAutores = Integer.parseInt(JOptionPane.showInputDialog("Quantidade de autores:"));
+
+            for(int i = 0; i < qtdAutores; i++){
+                Autor aut = new Autor();
+
+                aut.setNome(JOptionPane.showInputDialog("Nome do Autor " + (i + 1) + ":"));
+                aut.setNascionalidade(JOptionPane.showInputDialog("Nacionalidade:"));
+
+                ob.setAutores(aut);
+            }
+
+            
+            this.listaObra.add(ob); 
+            taSaida.setText("Obra cadastrada com sucesso!");
+
+            for (Obra obr : this.listaObra){
+                taSaida.append("\n" + obr.getTitulo());
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Erro: No campo 'Quantidade de autores' você deve digitar um número inteiro válido!");
+            taSaida.setText("Falha no cadastro: quantidade de autores inválida.");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cadastrar: " + e.getMessage());
         }
     }//GEN-LAST:event_inserirObraActionPerformed
 
