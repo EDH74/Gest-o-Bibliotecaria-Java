@@ -269,6 +269,14 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
     }//GEN-LAST:event_comboBoxCategoriaActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        String obraSelecionada = (String) comboBoxObras.getSelectedItem();
+        String[] isbn = obraSelecionada.split("-");
+        Obra obra = principal.acharObra(isbn[1]);
+        FichaConservacao fichaExistente = principal.acharFichaConservacao(obra);
+        
+        
+        taSaida.setText("Todas Intervenções existentes da Obra " + isbn[0] + ":\n" );
+        taSaida.append(fichaExistente.retornarTodasIntervencoes());
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
