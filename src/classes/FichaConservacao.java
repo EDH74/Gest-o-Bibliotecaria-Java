@@ -110,5 +110,6 @@ public class FichaConservacao implements GerenciarFichaConservacao{
        listaIntervencoes.remove(inter);
        atualizarIdFichas();
    }
+
    
 }

@@ -13,4 +13,5 @@ public interface GerenciarFichaConservacao {
     public void atualizarIdFichas();
     
     public Intervencao acharIntervencao(int id);
+    
 }

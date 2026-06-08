@@ -13,7 +13,7 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
     private ArrayList<FichaConservacao> listaFicha;
     private ArrayList<Obra> listaObras;
     private ArrayList<Categoria> categoriaList;
-    private FichaConservacao intervencao;
+    
     FormMain principal;
     
     public FormControleFichaConservacao(java.awt.Frame parent, boolean modal, ArrayList<Funcionario> auxList,
@@ -211,12 +211,28 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
         String[] isbn = obraSelecionada.split("-");
         Obra obra = principal.acharObra(isbn[1]);  //Pega a obra 
         FichaConservacao fichaExistente = principal.acharFichaConservacao(obra);  //pega a ficha de conservação da obra
-        
         if(fichaExistente != null){
-            
+            int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da intervenção a ser alterada"));
+            Intervencao inter = fichaExistente.acharIntervencao(id);
+            if (inter != null){
+                String nome = JOptionPane.showInputDialog("Digite o nome da intervenção: ");
+                String relato = JOptionPane.showInputDialog("Digite o Relato de dessa atividade: ");
+                String nomeColaborador = (String) comboBoxFuncionarios.getSelectedItem();
+                String cat = (String) comboBoxCategoria.getSelectedItem();
+                Categoria categoria = principal.acharCategoria(cat);
+                
+                inter.setNome(nome);
+                inter.setRelato(relato);
+                inter.setColaborador(nomeColaborador);
+                inter.setCategoria(categoria);
+            } else{
+                taSaida.setText("Id passado inválido, tente novamente!");
+                return;
+            } 
+        } else{
+            taSaida.setText("Obra não possui ficha existente");
+            return;
         }
-        
-        
     }//GEN-LAST:event_modificaInfoActionPerformed
 
     private void bibliotecarioRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecarioRadioActionPerformed
@@ -244,7 +260,6 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
                 String nome = JOptionPane.showInputDialog("Digite o nome da intervenção: ");
                 String data = JOptionPane.showInputDialog("Digite a data: ");
                 Object acao = JOptionPane.showInputDialog(null, "Selecione o cargo do funcionário:", "Escolha o Cargo", JOptionPane.QUESTION_MESSAGE ,null, acoes, acoes[1]);
-                System.out.println(acao.toString());
                 String relato = JOptionPane.showInputDialog("Digite o Relato de dessa atividade: ");
                 String nomeColaborador = (String) comboBoxFuncionarios.getSelectedItem();
 
@@ -257,7 +272,6 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
                 String nome = JOptionPane.showInputDialog("Digite o nome da intervenção: ");
                 String data = JOptionPane.showInputDialog("Digite a data: ");
                 Object acao = JOptionPane.showInputDialog(null, "Selecione o cargo do funcionário:", "Escolha o Cargo", JOptionPane.QUESTION_MESSAGE ,null, acoes, acoes[1]);
-                System.out.println(acao.toString());
                 String relato = JOptionPane.showInputDialog("Digite o Relato de dessa atividade: ");
                 String nomeColaborador = (String) comboBoxFuncionarios.getSelectedItem();
                 String cat = (String) comboBoxCategoria.getSelectedItem();
@@ -289,7 +303,7 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
 
 
             taSaida.setText("Todas Intervenções existentes da Obra " + isbn[0] + ":\n" );
-            taSaida.append(fichaExistente.retornarFichaConservacaoCompleta());
+            taSaida.append(fichaExistente.retornarTodasIntervencoes());
        }
        catch(Exception ue ){
            taSaida.setText("Erro " + ue.getMessage());
@@ -334,12 +348,15 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Esta obra não possui nenhuma ficha de conservação ou intervenções cadastradas.");
         }
         
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "ID inválido! Digite apenas números.");
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Erro ao excluir: " + e.getMessage());
-    }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "ID inválido! Digite apenas números.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao excluir: " + e.getMessage());
+        }
     }//GEN-LAST:event_excluirIntervencaoActionPerformed
+
+                               
 
     
    
