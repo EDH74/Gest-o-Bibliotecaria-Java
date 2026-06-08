@@ -28,7 +28,7 @@ public class FormRelatorio extends javax.swing.JDialog {
         cbObras.removeAllItems();
         
         for(Obra ob : this.listaObrasDoMain) {
-            cbObras.addItem(ob.getTitulo() + "-" + ob.getIsbn());
+            cbObras.addItem(ob.getTitulo() + " - " + ob.getIsbn());
         }
     }
     
@@ -44,6 +44,7 @@ public class FormRelatorio extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         cbObras.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbObras.addActionListener(this::cbObrasActionPerformed);
 
         verRelatorio.setText("Ver Relátorio");
         verRelatorio.addActionListener(this::verRelatorioActionPerformed);
@@ -85,18 +86,23 @@ public class FormRelatorio extends javax.swing.JDialog {
         taSaida.setText("");
         try {
            String obraSelecionada = (String) cbObras.getSelectedItem();
-            String[] isbn = obraSelecionada.split("-");
+            String[] isbn = obraSelecionada.split(" - ");
             Obra obra = principal.acharObra(isbn[1]);
             FichaConservacao fichaExistente = principal.acharFichaConservacao(obra);
+           
             
             if (fichaExistente != null){
                 taSaida.setText(fichaExistente.retornarFichaConservacaoCompleta());
-            }else return;
+            }
             
             }  catch (Exception e) {
                 taSaida.setText(e.getMessage());
             }
     }//GEN-LAST:event_verRelatorioActionPerformed
+
+    private void cbObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbObrasActionPerformed
+        
+    }//GEN-LAST:event_cbObrasActionPerformed
 
 
 
