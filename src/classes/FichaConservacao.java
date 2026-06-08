@@ -20,7 +20,6 @@ public class FichaConservacao implements GerenciarFichaConservacao{
         this.listaIntervencoes.add(novaIntervencao);
         this.atualizarIdFichas(); 
     }
-   
     
    @Override 
    public String retornarTodasIntervencoes(){
@@ -107,6 +106,9 @@ public class FichaConservacao implements GerenciarFichaConservacao{
         return null;
     }
     
-   
+   public void excluirPeloId(Intervencao inter){
+       listaIntervencoes.remove(inter);
+       atualizarIdFichas();
+   }
    
 }
