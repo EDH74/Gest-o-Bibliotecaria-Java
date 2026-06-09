@@ -107,11 +107,7 @@ public class FichaConservacao implements GerenciarFichaConservacao{
         return null;
     }
     
-    public void excluirPeloIndice(Intervencao inter){
-        int indice = listaIntervencoes.indexOf(inter);
-        listaIntervencoes.remove(indice);
-        atualizarIdFichas();
-    }
+  
     
    
 }
