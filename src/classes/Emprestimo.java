@@ -5,7 +5,7 @@ public class Emprestimo {
     private String dataSaida;
     private String previsaoEntrega;
     private double valorMulta;
-    private boolean status;
+    private String status;
     
     private Leitor leitor;
     private Obra obra;
@@ -15,12 +15,12 @@ public class Emprestimo {
         
     }
     
-    public Emprestimo(int codigo, String dataSaida, String previsaoEntrega, double valorMulta, boolean status, Leitor leitor, Obra obra){
+    public Emprestimo(int codigo, String dataSaida, String previsaoEntrega, double valorMulta, String status, Leitor leitor, Obra obra){
         this.codigo = codigo;
         this.dataSaida = dataSaida;
         this.previsaoEntrega = previsaoEntrega;
         this.valorMulta = 0;
-        this.status = true;
+        this.status = status;
         this.leitor = leitor;
         this.obra = obra;
     }
