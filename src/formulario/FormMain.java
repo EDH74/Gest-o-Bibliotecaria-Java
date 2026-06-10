@@ -23,6 +23,17 @@ public class FormMain extends javax.swing.JFrame {
         this.autoCategoria();
         this.testUser();
         this.testObras();
+        
+        listaLeitores.add(new Leitor("457.218.903-12", "Ana Silva"));
+        listaLeitores.add(new Leitor("281.495.302-85", "Bruno Souza"));
+        listaLeitores.add(new Leitor("743.159.620-44", "Carlos Oliveira"));
+        listaLeitores.add(new Leitor("109.682.354-91", "Daniela Lima"));
+        listaLeitores.add(new Leitor("852.361.479-06", "Eduardo Costa"));
+        listaLeitores.add(new Leitor("369.147.258-52", "Fernanda Rodrigues"));
+        listaLeitores.add(new Leitor("602.481.739-13", "Gabriel Almeida"));
+        listaLeitores.add(new Leitor("914.738.251-67", "Juliana Pereira"));
+        listaLeitores.add(new Leitor("523.691.487-30", "Lucas Martins"));
+        listaLeitores.add(new Leitor("147.258.369-88", "Mariana Santos"));
     }
     
     final private ArrayList<Funcionario> auxList = new ArrayList();
@@ -30,8 +41,8 @@ public class FormMain extends javax.swing.JFrame {
     final private ArrayList<Obra> listaObras = new ArrayList();
     final private ArrayList<Categoria> categoriaList = new ArrayList();
     final private ArrayList<FichaConservacao> listaFicha = new ArrayList();
-   
-    
+    final private ArrayList<Leitor> listaLeitores = new ArrayList();
+    final private ArrayList<Emprestimo> listaEmprestimos = new ArrayList();
     
     public void autoCategoria(){
       if(categoriaList != null && !categoriaList.isEmpty()) return;
@@ -68,8 +79,8 @@ public class FormMain extends javax.swing.JFrame {
         Autor aut1 = new Autor("Nome1", "Brasil");
         Autor aut2 = new Autor("Nome2", "JP");
         
-        Obra ob1 = new Obra("Titulo 1", "asda/2", "02/01/2025", "Editora1");
-        Obra ob2 = new Obra("Titulo 22", "as/2", "01/01/2024", "Editora2");
+        Obra ob1 = new Obra("Titulo: Lupin", "ISBN: 8582", "02/01/2025", "Editora1");
+        Obra ob2 = new Obra("Titulo: Harry Poter", "ISBN: 8514", "01/01/2024", "Editora2");
         
         listaObras.add(ob1);
         listaObras.add(ob2);
@@ -196,6 +207,7 @@ public class FormMain extends javax.swing.JFrame {
         botaoAbrirAcervo = new javax.swing.JButton();
         CadastroFichas = new javax.swing.JButton();
         VerRelatorios = new javax.swing.JButton();
+        VerRelatorios1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -211,6 +223,9 @@ public class FormMain extends javax.swing.JFrame {
         VerRelatorios.setText("Ver Relatórios");
         VerRelatorios.addActionListener(this::VerRelatoriosActionPerformed);
 
+        VerRelatorios1.setText("Resgistrar Empréstimos");
+        VerRelatorios1.addActionListener(this::VerRelatorios1ActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -221,7 +236,8 @@ public class FormMain extends javax.swing.JFrame {
                     .addComponent(VerRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(CadastroFichas, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
-                    .addComponent(botaoAbrirAcervo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botaoAbrirAcervo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(VerRelatorios1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -229,13 +245,15 @@ public class FormMain extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoAbrirAcervo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CadastroFichas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(VerRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(VerRelatorios1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         pack();
@@ -265,6 +283,13 @@ public class FormMain extends javax.swing.JFrame {
         telaRelatorio.setVisible(true);
     }//GEN-LAST:event_VerRelatoriosActionPerformed
 
+    private void VerRelatorios1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerRelatorios1ActionPerformed
+        FormEmprestimo telaEmprestimo = new FormEmprestimo(this, true, this.listaLeitores, this.listaObras);
+        
+        telaEmprestimo.setLocationRelativeTo(this);
+        telaEmprestimo.setVisible(true);
+    }//GEN-LAST:event_VerRelatorios1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -293,6 +318,7 @@ public class FormMain extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CadastroFichas;
     private javax.swing.JButton VerRelatorios;
+    private javax.swing.JButton VerRelatorios1;
     private javax.swing.JButton botaoAbrirAcervo;
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables

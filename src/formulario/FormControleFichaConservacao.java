@@ -13,6 +13,7 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
     private ArrayList<FichaConservacao> listaFicha;
     private ArrayList<Obra> listaObras;
     private ArrayList<Categoria> categoriaList;
+    
     FormMain principal;
     
     public FormControleFichaConservacao(java.awt.Frame parent, boolean modal, ArrayList<Funcionario> auxList,
@@ -25,7 +26,7 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
         this.listaFicha = listaFicha;
         this.categoriaList = categoriaList;
         initComponents();
-        principal = (FormMain) this.getParent();     
+        principal = (FormMain) this.getParent();
         
         updateComboFuncionarios();
         updateComboObra();
@@ -65,7 +66,6 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
     
     
     
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -76,7 +76,7 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         comboBoxFuncionarios = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
+        excluirIntervencao = new javax.swing.JButton();
         modificaInfo = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         auxRadio = new javax.swing.JRadioButton();
@@ -103,7 +103,8 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
 
         comboBoxFuncionarios.addActionListener(this::comboBoxFuncionariosActionPerformed);
 
-        jButton2.setText("Excluir Intervenção");
+        excluirIntervencao.setText("Excluir Intervenção");
+        excluirIntervencao.addActionListener(this::excluirIntervencaoActionPerformed);
 
         modificaInfo.setText("Modificar Informações");
         modificaInfo.addActionListener(this::modificaInfoActionPerformed);
@@ -145,7 +146,7 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton4)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(excluirIntervencao, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
@@ -156,7 +157,7 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
                                     .addComponent(comboBoxFuncionarios, 0, 245, Short.MAX_VALUE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(comboBoxCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(comboBoxObras, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -175,7 +176,7 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modificaInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(excluirIntervencao, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -294,16 +295,68 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
     }//GEN-LAST:event_comboBoxCategoriaActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       try{
+            String obraSelecionada = (String) comboBoxObras.getSelectedItem();
+            String[] isbn = obraSelecionada.split("-");
+            Obra obra = principal.acharObra(isbn[1]);
+            FichaConservacao fichaExistente = principal.acharFichaConservacao(obra);
+
+
+            taSaida.setText("Todas Intervenções existentes da Obra " + isbn[0] + ":\n" );
+            taSaida.append(fichaExistente.retornarTodasIntervencoes());
+       }
+       catch(Exception ue ){
+           taSaida.setText("Erro " + ue.getMessage());
+       } 
+       
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void excluirIntervencaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirIntervencaoActionPerformed
+        try {
+        
+        int idDigitado = Integer.parseInt(JOptionPane.showInputDialog("ID da Intervenção"));
+        
+        // 2. Descobre qual obra está selecionada na ComboBox da tela
         String obraSelecionada = (String) comboBoxObras.getSelectedItem();
+        if (obraSelecionada == null) {
+            JOptionPane.showMessageDialog(this, "Nenhuma obra selecionada.");
+            return;
+        }
         String[] isbn = obraSelecionada.split("-");
         Obra obra = principal.acharObra(isbn[1]);
+        
+        // 3. Busca a Ficha de Conservação real que pertence a essa obra
         FichaConservacao fichaExistente = principal.acharFichaConservacao(obra);
         
+        if (fichaExistente != null) {
+            // 4. Usa a ficha da obra para procurar a intervenção pelo ID
+            Intervencao inte = fichaExistente.acharIntervencao(idDigitado);
+            
+            if (inte != null) {
+                // 5. Deleta o objeto usando o seu método corrigido (da imagem)
+                fichaExistente.excluirPeloId(inte); 
+                
+                JOptionPane.showMessageDialog(this, "Intervenção excluída com sucesso!");
+                
+                // 6. Atualiza a caixa de texto na tela para mostrar a lista atualizada
+                taSaida.setText("Todas Intervenções existentes da Obra " + isbn[0] + ":\n" );
+                taSaida.append(fichaExistente.retornarFichaConservacaoCompleta());
+            } else {
+                JOptionPane.showMessageDialog(this, "Intervenção com o ID " + idDigitado + " não foi encontrada nesta obra.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Esta obra não possui nenhuma ficha de conservação ou intervenções cadastradas.");
+        }
         
-        taSaida.setText("Todas Intervenções existentes da Obra " + isbn[0] + ":\n" );
-        taSaida.append(fichaExistente.retornarTodasIntervencoes());
-        
-    }//GEN-LAST:event_jButton4ActionPerformed
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "ID inválido! Digite apenas números.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao excluir: " + e.getMessage());
+        }
+    }//GEN-LAST:event_excluirIntervencaoActionPerformed
+
+                               
 
     
    
@@ -315,8 +368,8 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> comboBoxCategoria;
     private javax.swing.JComboBox<String> comboBoxFuncionarios;
     private javax.swing.JComboBox<String> comboBoxObras;
+    private javax.swing.JButton excluirIntervencao;
     private javax.swing.ButtonGroup funcionariosGroup;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
