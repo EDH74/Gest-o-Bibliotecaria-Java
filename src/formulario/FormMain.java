@@ -79,8 +79,8 @@ public class FormMain extends javax.swing.JFrame {
         Autor aut1 = new Autor("Nome1", "Brasil");
         Autor aut2 = new Autor("Nome2", "JP");
         
-        Obra ob1 = new Obra("Titulo 1", "asda/2", "02/01/2025", "Editora1");
-        Obra ob2 = new Obra("Titulo 22", "as/2", "01/01/2024", "Editora2");
+        Obra ob1 = new Obra("Titulo: Lupin", "ISBN: 8582", "02/01/2025", "Editora1");
+        Obra ob2 = new Obra("Titulo: Harry Poter", "ISBN: 8514", "01/01/2024", "Editora2");
         
         listaObras.add(ob1);
         listaObras.add(ob2);
@@ -284,7 +284,10 @@ public class FormMain extends javax.swing.JFrame {
     }//GEN-LAST:event_VerRelatoriosActionPerformed
 
     private void VerRelatorios1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerRelatorios1ActionPerformed
-        // TODO add your handling code here:
+        FormEmprestimo telaEmprestimo = new FormEmprestimo(this, true, this.listaLeitores, this.listaObras);
+        
+        telaEmprestimo.setLocationRelativeTo(this);
+        telaEmprestimo.setVisible(true);
     }//GEN-LAST:event_VerRelatorios1ActionPerformed
 
     /**

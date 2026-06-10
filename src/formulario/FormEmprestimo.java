@@ -1,5 +1,6 @@
 package formulario;
 
+import classes.Emprestimo;
 import classes.Leitor;
 import classes.Obra;
 import java.util.ArrayList;
@@ -10,7 +11,8 @@ public class FormEmprestimo extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormEmprestimo.class.getName());
     
     private ArrayList<Obra> listaObrasDoMain;
-    private ArrayList<Leitor> listaLeitores;
+    private ArrayList<Leitor> listaLeitoresDoMain;
+    private ArrayList<Emprestimo> listaEmprestimosDoMain;
 
     
     public FormEmprestimo(java.awt.Frame parent, boolean modal, ArrayList<Leitor> listaLeitores, ArrayList<Obra> listaObrasNoEmprestimo) {
@@ -18,8 +20,10 @@ public class FormEmprestimo extends javax.swing.JDialog {
         initComponents();
         
         this.listaObrasDoMain = listaObrasNoEmprestimo;
-        this.listaLeitores = listaLeitores;
+        this.listaLeitoresDoMain = listaLeitores;
         
+        this.inserirObrasCB();
+        this.inserirLeitoresCB();
     }
     
     public void inserirObrasCB(){
@@ -27,6 +31,14 @@ public class FormEmprestimo extends javax.swing.JDialog {
         
         for(Obra ob : this.listaObrasDoMain) {
             cbObras.addItem(ob.getTitulo() + " - " + ob.getIsbn());
+        }
+    }
+    
+    public void inserirLeitoresCB(){
+        cbLeitores.removeAllItems();
+        
+        for (Leitor lt : this.listaLeitoresDoMain){
+            cbLeitores.addItem(lt.getNome());
         }
     }
 
@@ -43,6 +55,8 @@ public class FormEmprestimo extends javax.swing.JDialog {
         cbObras = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        taSaida = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -66,10 +80,20 @@ public class FormEmprestimo extends javax.swing.JDialog {
 
         jLabel2.setText("Leitores");
 
+        taSaida.setColumns(20);
+        taSaida.setRows(5);
+        jScrollPane1.setViewportView(taSaida);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(124, 124, 124)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(135, 135, 135))
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -82,12 +106,7 @@ public class FormEmprestimo extends javax.swing.JDialog {
                     .addComponent(excluirEmprestimo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbLeitores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(37, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(135, 135, 135))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +127,8 @@ public class FormEmprestimo extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbLeitores, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbObras, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(162, 162, 162))
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -139,6 +159,8 @@ public class FormEmprestimo extends javax.swing.JDialog {
     private javax.swing.JButton imprimirEmprestimo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton registrarEmprestimo;
+    private javax.swing.JTextArea taSaida;
     // End of variables declaration//GEN-END:variables
 }
