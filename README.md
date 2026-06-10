@@ -41,4 +41,6 @@ Gestao-biblioteca-Poo/
 └── nbproject/          # Configurações internas do NetBeans
 ```
 Eduardo Araujo dos Santos - Desenvolvedor do Projeto - @EDH74
+---
 Rafael Borges Santos - Desenvolvedor do Projeto - @Rafael-KD  
+---
