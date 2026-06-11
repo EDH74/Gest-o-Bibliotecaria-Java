@@ -57,11 +57,11 @@ public class Emprestimo {
         this.valorMulta = valorMulta;
     }
 
-    public boolean isStatus() {
+    public String isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
