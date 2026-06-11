@@ -93,9 +93,10 @@ public class Emprestimo implements EmprestimoGerencia{
     @Override
     public String toString(){
         return "\nNome da Obra: " + obra.getTitulo() + 
-                " - Pego em: " + dataSaida + 
-                " - Data de Devolução: " + previsaoEntrega + 
-                " Valor da Multa: " + valorMulta;
+                "\nPego em: " + dataSaida + 
+                "\nData de Devolução: " + previsaoEntrega + 
+                "\nData Devolvida: " + dataDevolvida +
+                "\nValor da Multa: " + valorMulta;
     }
 
     @Override
@@ -113,7 +114,7 @@ public class Emprestimo implements EmprestimoGerencia{
             dataFim.setTime(dataFimConvertida);
             dataDevolvida.setTime(dataDevolvidaConvertida);
             
-            if (dataFim.before(dataInicio)) throw new IllegalArgumentException("A data de fim é menor que a data de começo");
+            if (dataFim.before(dataInicio) || dataInicio.after(dataFim)) throw new IllegalArgumentException("A data de fim é menor que a data de começo");
             
             if (dataDevolvida.after(dataFim))
             {

@@ -206,7 +206,18 @@ public class FormEmprestimo extends javax.swing.JDialog {
     }// GEN-LAST:event_alterarInfoEmprestimoActionPerformed
 
     private void imprimirEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_imprimirEmprestimoActionPerformed
-        // TODO add your handling code here:
+       
+        taSaida.setText("Todos os imprestimos ativos: ");
+         taSaida.append(""
+                    + "\n=============================\n"
+                    + "\nHISTORICO DE EMPRESTIMO ATIVO\n"
+                    + "\n=============================\n"
+            );
+        for (Emprestimo i : listaEmprestimos){
+            taSaida.append( i.toString());
+            taSaida.append("\n=============================\n");
+        }
+        
     }// GEN-LAST:event_imprimirEmprestimoActionPerformed
 
     private void excluirEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_excluirEmprestimoActionPerformed
