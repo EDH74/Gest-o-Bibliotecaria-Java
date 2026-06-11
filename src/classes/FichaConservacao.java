@@ -1,4 +1,5 @@
 package classes;
+import classes.models.GerenciarFichaConservacao;
 import java.util.ArrayList;
 
 public class FichaConservacao implements GerenciarFichaConservacao{

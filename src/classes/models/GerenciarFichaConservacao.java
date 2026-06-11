@@ -1,4 +1,6 @@
-package classes;
+package classes.models;
+
+import classes.Intervencao;
 
 public interface GerenciarFichaConservacao {
  

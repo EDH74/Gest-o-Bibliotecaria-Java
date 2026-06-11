@@ -1,13 +1,17 @@
 package classes;
 import java.util.ArrayList;
 import classes.Autor;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Obra {
     private String titulo, isbn, data, editora;
+    private boolean status;
     private final ArrayList<Autor> listAutor = new ArrayList();
-    
-    
+
+
     public Obra(){
+        this.status = false;
     }
 
     public Obra(String titulo, String isbn, String data, String editora) {
@@ -15,14 +19,24 @@ public class Obra {
         this.isbn = isbn;
         this.data = data;
         this.editora = editora;
+        this.status = false;
     }
-    
-    
-    
+
+
+
     //getter e setter de Titulo!
     public String getTitulo() {
         return titulo;
     }
+
+    public String getStatus() {
+        return status ? "Ativo":"Devolvido";
+    }
+
+    public void setStatus(boolean emprestado) {
+        this.status = emprestado;
+    }
+
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
@@ -62,27 +76,28 @@ public class Obra {
 
     public void setAutores(Autor autores) {
         this.listAutor.add(autores);
-        
+
     }
-    
+
     public String exibirAutores(){
         String msg = "" ;
-                
+
         for(Autor i : listAutor){
             msg += "Autor: " + i.getNome() + "\nNascionalidade: " + i.getNascionalidade() + "\n";
         }
-        
+
         return msg;
     }
 
     @Override
     public String toString() {
-        return  "Titulo = " + titulo 
-                + "\nISBN = " + isbn 
-                + "\nData = " + data 
-                + "\nEditora = " + editora + "\n"
+        return  "Titulo = " + titulo
+                + "\nISBN = " + isbn
+                + "\nData = " + data
+                + "\nEditora = " + editora 
+                + "\nStatus de Emprestimo = " + status + "\n"
                 + exibirAutores();
     }
-    
-    
+
+
 }
