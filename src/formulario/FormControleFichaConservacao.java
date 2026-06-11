@@ -252,6 +252,7 @@ public class FormControleFichaConservacao extends javax.swing.JDialog {
         String[] isbn = obraSelecionada.split("-");
         Obra obra = principal.acharObra(isbn[1]);
         FichaConservacao fichaExistente = principal.acharFichaConservacao(obra);
+        
         FichaConservacao ficha = new FichaConservacao(obra);
         String[] acoes = {"Restauro", "Encardenacao", "Higienizacao"};
         

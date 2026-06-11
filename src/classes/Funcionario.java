@@ -1,4 +1,5 @@
 package classes;
+import classes.models.Colaborador;
 import java.util.ArrayList;
 
 public class Funcionario implements Colaborador {

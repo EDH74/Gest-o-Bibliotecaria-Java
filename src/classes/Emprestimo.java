@@ -1,11 +1,19 @@
 package classes;
+import classes.models.EmprestimoGerencia;
+import java.text.ParseException;
 
-public class Emprestimo {
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+
+public class Emprestimo implements EmprestimoGerencia{
     private int codigo;
     private String dataSaida;
     private String previsaoEntrega;
+    private String dataDevolvida;
     private double valorMulta;
-    private String status;
+    private boolean status;
     
     private Leitor leitor;
     private Obra obra;
@@ -15,12 +23,12 @@ public class Emprestimo {
         
     }
     
-    public Emprestimo(int codigo, String dataSaida, String previsaoEntrega, double valorMulta, String status, Leitor leitor, Obra obra){
-        this.codigo = codigo;
+    public Emprestimo(String dataSaida, String previsaoEntrega, String dataDevolvida,Leitor leitor, Obra obra){
         this.dataSaida = dataSaida;
         this.previsaoEntrega = previsaoEntrega;
+        this.dataDevolvida = dataDevolvida;
         this.valorMulta = 0;
-        this.status = status;
+        this.status = true;
         this.leitor = leitor;
         this.obra = obra;
     }
@@ -58,11 +66,12 @@ public class Emprestimo {
     }
 
     public String isStatus() {
-        return status;
+        return status ? "Ativo":"Devolvido";
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
+        this.obra.setStatus(status);
     }
 
     public Leitor getLeitor() {
@@ -79,6 +88,62 @@ public class Emprestimo {
 
     public void setObra(Obra obra) {
         this.obra = obra;
+    }
+    
+    public String getDataDevolvida() {
+        return dataDevolvida;
+    }
+
+    public void setDataDevolvida(String dataDevolvida) {
+        this.dataDevolvida = dataDevolvida;
+    }
+    
+    @Override
+    public String toString(){
+        return  "\nCódigo: " + codigo +
+                "\nNome da Obra: " + obra.getTitulo() + 
+                "\nPego em: " + dataSaida + 
+                "\nData de Devolução: " + previsaoEntrega + 
+                "\nData Devolvida: " + dataDevolvida +
+                "\nValor da Multa: " + valorMulta;
+    }
+
+    @Override
+    public void calcularMulta() {
+        SimpleDateFormat dataFormato = new SimpleDateFormat("dd/MM/yyyy");  //Variavel que transforma String (09/01/2020) em date
+        Calendar dataInicio = Calendar.getInstance();      //Passando para classe Calendar, nela tem como fazer as comparações entre datas
+        Calendar dataFim = Calendar.getInstance(); 
+        Calendar dataDevolvida = Calendar.getInstance();
+        try {
+            Date dataInicioConvertida = dataFormato.parse(this.dataSaida);
+            Date dataFimConvertida = dataFormato.parse(this.previsaoEntrega); //Transformando em data
+            Date dataDevolvidaConvertida = dataFormato.parse(this.dataDevolvida);
+             
+            dataInicio.setTime(dataInicioConvertida);
+            dataFim.setTime(dataFimConvertida);
+            dataDevolvida.setTime(dataDevolvidaConvertida);
+            
+            if (dataFim.before(dataInicio)) throw new IllegalArgumentException("A data de fim é menor que a data de começo");
+            
+            if (dataDevolvida.after(dataFim))
+            {
+                this.valorMulta = 25;
+            } 
+            else
+            {
+                this.valorMulta = 0;
+            }
+            
+        } catch (ParseException e) {
+            System.getLogger("Erro ao Calcular a Multa, tente novamente mais tarde!");
+        }
+        
+        
+   
+        
+        
+        
+        
     }
     
     

@@ -1,4 +1,5 @@
 package classes;
+import classes.models.GerenciarFichaConservacao;
 import java.util.ArrayList;
 
 public class FichaConservacao implements GerenciarFichaConservacao{
@@ -106,10 +107,10 @@ public class FichaConservacao implements GerenciarFichaConservacao{
         return null;
     }
     
+
    public void excluirPeloId(Intervencao inter){
        listaIntervencoes.remove(inter);
        atualizarIdFichas();
    }
 
-   
 }
